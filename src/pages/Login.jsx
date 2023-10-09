@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import bannerHero from "../assets/bannerHero.jpg";
 import { Logo } from "../components";
 import { useAuthContext } from "../contexts";
+import api from "../utils/axios-config"; // Import tệp axios-config.js đã cấu hình
 
 const Login = () => {
   const { loginHandler, token, loggingIn } = useAuthContext();
@@ -27,10 +28,29 @@ const Login = () => {
     };
   }, [token]);
 
-  const handleSubmit = (e) => {
+  // Đánh dấu hàm là async để sử dụng await
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    loginHandler(loginCredentials);
+    try {
+      // Sử dụng Axios để gửi yêu cầu đăng nhập đến backend
+      const response = await api.post(
+        "http://localhost:8000/api/login",
+        loginCredentials
+      );
+      loginHandler(loginCredentials);
+      // Xử lý kết quả trả về từ backend
+      if (response.status === 200) {
+        // Lưu trữ token trong localStorage sau khi đăng nhập thành công
+        localStorage.setItem("token", response.data.access_token);
+        // Lưu trữ token nếu cần
+        localStorage.setItem("token", response?.data?.access_token);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
     <main className="grid  grid-rows-1 lg:grid-cols-2 w-full  h-screen m-auto">
       <section className=" hidden lg:block max-h-screen  rounded-lg">
@@ -91,8 +111,8 @@ const Login = () => {
                   onClick={() => {
                     setLoginCredentials({
                       ...loginCredentials,
-                      email: "kookie@bangtan.com",
-                      password: "bangtan0707",
+                      email: "GuestIS207.O13@gmail.com",
+                      password: "IS207O13",
                     });
                   }}
                 >

@@ -5,12 +5,13 @@ import bannerHero from "../assets/bannerHero.jpg";
 import { Logo } from "../components";
 import { useAuthContext } from "../contexts";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Signup = () => {
-  const { signupHandler, signingUp, isAuthenticated } = useAuthContext();
+  const { signingUp, isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -33,15 +34,42 @@ const Signup = () => {
     };
   }, [isAuthenticated]);
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   signupHandler(userDetails);
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    signupHandler(userDetails);
+    if (userDetails.password !== confirmPassword) {
+      // Xử lý trường hợp mật khẩu không trùng khớp
+      console.error("Password mismatch");
+      return;
+    }
+
+    try {
+      // Sử dụng Axios để gửi yêu cầu đăng ký đến backend
+      const response = await axios.post(
+        "http://localhost:8000/api/register",
+        userDetails
+      );
+      localStorage.setItem("token", response?.data?.access_token);
+      navigate("/login");
+      // Xử lý kết quả trả về từ backend
+      // Đăng nhập người dùng sau khi đăng ký thành công
+    } catch (error) {
+      console.error(error);
+      // Xử lý lỗi và hiển thị thông báo cho người dùng (ví dụ: email đã tồn tại, lỗi định dạng)
+      if (error.response) {
+        console.log("Server error message:", error.response.data);
+      }
+    }
   };
 
   const isDisabled =
     signingUp ||
-    !userDetails.username ||
+    !userDetails.name ||
     !userDetails.email ||
     !userDetails.password ||
     !confirmPassword;
@@ -67,9 +95,9 @@ const Signup = () => {
                   required
                   placeholder="Username"
                   className="border rounded-md p-1.5 shadow-sm"
-                  value={userDetails.username}
+                  value={userDetails.name}
                   onChange={(e) =>
-                    setUserDetails({ ...userDetails, username: e.target.value })
+                    setUserDetails({ ...userDetails, name: e.target.value })
                   }
                 />
               </label>

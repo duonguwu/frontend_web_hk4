@@ -53,7 +53,7 @@ const Profile = () => {
           <div className="flex flex-col gap-4 w-full p-5">
             <p>
               <span className="text-gray-600 me-1">Username:</span>
-              <span className="break-all">{userDetails?.username}</span>
+              <span className="break-all">{userDetails?.name}</span>
             </p>
             <p>
               {" "}

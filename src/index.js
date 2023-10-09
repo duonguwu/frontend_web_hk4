@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 
 import App from "./App";
-import { makeServer } from "./server";
+// import { makeServer } from "./server";
 import {
   AuthContextProvider,
   CartContextProvider,
@@ -13,7 +13,7 @@ import {
 } from "./contexts";
 
 // Call make Server
-makeServer();
+// makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
