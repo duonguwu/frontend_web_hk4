@@ -10,7 +10,7 @@ import {
   useWishlistContext,
 } from "../contexts";
 import { getProductByIdService } from "../api/apiServices";
-import { StarRating } from "../components";
+import { StarRating, Similar } from "../components";
 import { notify } from "../utils/utils";
 
 const ProductDetails = () => {
@@ -38,8 +38,11 @@ const ProductDetails = () => {
     })();
   }, [allProducts]);
 
+  
   return (
-    <div className="md:min-h-[80vh] flex justify-center items-center pt-5 sm:pt-3 pb-2 relative">
+    <div>
+        
+    <div className="md:min-h-[60vh] flex justify-center items-center pt-5 sm:pt-3 pb-2 relative">
       <main className="grid grid-rows-1 sm:grid-cols-2 gap-2 sm:gap-10 ">
         <section className="relative p-7 bg-black/[0.075]  flex items-center justify-center rounded-lg">
           <img
@@ -93,10 +96,10 @@ const ProductDetails = () => {
           <div className="flex gap-2 items-center pb-10 sm:pb-0">
             Price:
             <span className="ms-1 text-xl sm:text-2xl text-amber-600">
-              ₹{product?.newPrice}
+              {product?.newPrice}VNĐ
             </span>
             <span className="text-sm text-gray-600 line-through">
-              ₹{product?.price}
+              {product?.price}VNĐ
             </span>
           </div>
 
@@ -151,7 +154,20 @@ const ProductDetails = () => {
             </button>
           </div>
         </section>
-      </main>
+      </main>        
+    </div>              
+        {/* <section>
+        <Similar />
+        </section> */}
+        <br />
+        <div className="w-full flex justify-center overflow-hidden ">
+          <>
+
+          <Similar currentProductCategory={product?.category} />
+          </>
+        </div>
+            
+
     </div>
   );
 };

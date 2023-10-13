@@ -7,11 +7,11 @@ const PriceDetailsCard = ({
     { label: "Total Products", value: totalItems },
     {
       label: "Subtotal",
-      value: `₹${actualPriceOfCart}`,
+      value: `${actualPriceOfCart}VNĐ`,
     },
     {
       label: "Discount",
-      value: `-₹${actualPriceOfCart - totalPriceOfCartProducts}`,
+      value: `-${actualPriceOfCart - totalPriceOfCartProducts}VNĐ`,
     },
     {
       label: "Delivery Charges",

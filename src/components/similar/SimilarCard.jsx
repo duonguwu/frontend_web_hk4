@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 
 import { AiOutlinePlus, AiOutlineCheck } from "react-icons/ai";
 
-const TrendingCard = ({ product }) => {
+const SimilarCard = ({ product }) => {
   return (
     <Link
       to={`/product/${product._id}`}
-      className="flex flex-col    px-4 py-2 rounded-xl  bg-black/[.06] cursor-pointer gap-3 "
-    >
+      className="flex flex-col    px-4 py-2 rounded-xl  bg-gray-100 cursor-pointer gap-3 " >
       <div className="flex justify-between gap-3 xs:flex-wrap xs:justify-center sm:flex-nowrap sm:justify-between">
         <div>
           <h1 className="text-xl xs:text-base sm:text-xl font-bold">
@@ -41,4 +40,4 @@ const TrendingCard = ({ product }) => {
   );
 };
 
-export default TrendingCard;
+export default SimilarCard;

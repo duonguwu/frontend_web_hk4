@@ -2,6 +2,7 @@ export { default as Navbar } from "./navbar/Navbar";
 export { default as Logo } from "./navbar/Logo";
 export { default as Banner } from "./banner/Banner";
 export { default as Footer } from "./footer/Footer";
+export { default as Similar } from "./similar/SimilarList";
 export { default as Trending } from "./trending/TrendingList";
 export { default as CategoryList } from "./categories/CategoryList";
 

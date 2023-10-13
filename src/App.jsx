@@ -4,6 +4,7 @@ import { Index as Route } from "./routes/index";
 import "./custom.styles.css";
 import { ToastContainer } from "react-toastify";
 
+
 const App = () => {
   return (
     <>
@@ -12,5 +13,7 @@ const App = () => {
     </>
   );
 };
+
+
 
 export default App;

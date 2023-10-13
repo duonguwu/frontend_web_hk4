@@ -1,5 +1,5 @@
 export const sortByPrice = (type, data) => {
-  if (type == "low_to_high") {
+  if (type === "low_to_high") {
     return [...data].sort((a, b) => a.newPrice - b.newPrice);
   } else if (type === "high_to_low") {
     return [...data].sort((a, b) => b.newPrice - a.newPrice);
@@ -39,5 +39,12 @@ export const filterBySearch = (searchText, data) => {
   const searchLowerCased = searchText.toLowerCase();
   return searchText
     ? data.filter(({ name }) => name.toLowerCase().includes(searchLowerCased))
+    : data;
+};
+
+//HTthem
+export const filterByCategory = (categories, data) => {
+  return categories
+    ? data.filter(({ category }) => category.includes(categories))
     : data;
 };

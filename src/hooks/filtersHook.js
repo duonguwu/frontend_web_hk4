@@ -6,6 +6,7 @@ import {
   filterByRating,
   filterBySearch,
   sortByPrice,
+  filterByCategory
 } from "../utils/filterUtils";
 
 const useFilter = () => {
@@ -19,6 +20,7 @@ const useFilter = () => {
   filteredData = filterByCheckbox(categories, filteredData);
   filteredData = filterByRating(rating, filteredData);
   filteredData = sortByPrice(sortBy, filteredData);
+  filteredData = filterByCategory(categories, allProducts);
 
   return filteredData;
 };

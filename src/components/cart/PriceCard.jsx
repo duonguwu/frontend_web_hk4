@@ -7,7 +7,7 @@ const PriceCard = ({ product }) => {
         {product.name} ({product.qty})item
       </p>
 
-      <p className="text-lg">₹ {product.qty * product.newPrice}</p>
+      <p className="text-lg">{product.qty * product.newPrice}VNĐ</p>
     </div>
   );
 };

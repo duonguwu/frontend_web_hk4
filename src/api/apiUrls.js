@@ -1,11 +1,8 @@
-const baseUrl = "http://localhost:8000/api";
+const baseUrl = "/api";
 
 //auth url
-// export const SIGNUP_URL = `${baseUrl}/auth/signup`;
-// export const LOGIN_URL = `${baseUrl}/auth/login`;
-
-export const SIGNUP_URL = `http://localhost:8000/api/register`;
-export const LOGIN_URL = `http://localhost:8000/api/login`;
+export const SIGNUP_URL = `${baseUrl}/auth/signup`;
+export const LOGIN_URL = `${baseUrl}/auth/login`;
 
 //products url
 
