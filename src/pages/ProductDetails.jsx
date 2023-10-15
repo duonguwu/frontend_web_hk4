@@ -12,6 +12,7 @@ import {
 import { getProductByIdService } from "../api/apiServices";
 import { StarRating } from "../components";
 import { notify } from "../utils/utils";
+import { ReviewList } from "./ProductReview";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ const ProductDetails = () => {
     useWishlistContext();
   const [loading, setLoading] = useState(false);
   const product = getProductById(productId);
+  const userDetails = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
 
   useEffect(() => {
     (async () => {
@@ -55,13 +59,13 @@ const ProductDetails = () => {
             <p className=" text-gray-600 text-sm sm:text-base">
               {product?.description}
             </p>
-            <div className="flex items-center gap-1">
+            {/* <div className="flex items-center gap-1">
               <StarRating />
 
               <span className="text-xs text-gray-400">
                 ({product?.rating}) Rating
               </span>
-            </div>
+            </div> */}
           </div>
 
           <div className="flex flex-col gap-2  ">
@@ -149,6 +153,26 @@ const ProductDetails = () => {
                 </>
               )}{" "}
             </button>
+          </div>
+        </section>
+        <section>
+          <div className="box customer review">
+            <h2 className="text-lg font-semibold">Customer Reviews</h2>
+            <div className="flex items-center gap-1">
+              <StarRating />
+
+              <span className="text-xs text-gray-400">
+                ({product?.rating}) Rating
+              </span>
+            </div>
+            <h3 className="text-lg font-semibold">Review Comments</h3>
+            <p>
+              <span className="text-gray-600 me-1">Username:</span>
+              <span className="break-all">{userDetails?.username}</span>
+            </p>
+            <div className="flex items-center gap-1">
+              <ReviewList />
+            </div>
           </div>
         </section>
       </main>
