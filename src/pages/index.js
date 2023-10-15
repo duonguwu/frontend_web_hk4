@@ -14,3 +14,4 @@ export { default as Checkout } from "./Checkout";
 export { default as Orders } from "./Orders";
 
 export { default as ErrorPage } from "./ErrorPage";
+export { default as ProductReview } from "./ProductReview";
