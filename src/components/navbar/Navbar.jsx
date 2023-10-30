@@ -48,7 +48,7 @@ const Navbar = () => {
         <section className="relative flex items-center">
           <Link to="/profile">
             <img
-              className="rounded-full border-2  bg-yellow-300 me-3 hover:bg-yellow-500 cursor-pointer"
+              className="rounded-full border-2  bg-blue-200 me-3 hover:bg-blue-900 cursor-pointer"
               src={defaultUser}
               alt="userProfileImage"
               width={40}
@@ -64,14 +64,14 @@ const Navbar = () => {
         <section className="flex items-center">
           <Link
             to="/products"
-            className="mx-2 px-3 py-1 shadow-sm rounded-md text-white bg-yellow-700 text-sm hover:bg-yellow-800 transition"
+            className="mx-2 px-3 py-1 shadow-sm rounded-md text-white bg-blue-800 text-sm hover:bg-blue-900 transition"
           >
             <span className="hidden xs:block">Explore</span>{" "}
             <MdOutlineExplore className="xs:hidden" />
           </Link>
           <ul className=" hidden md:flex justify-between text-2xl ps-1">
             <li
-              className="relative bg-gray-200  p-2 rounded-full hover:bg-yellow-800 hover:text-white cursor-pointer mx-2 transition shadow-sm"
+              className="relative bg-gray-200  p-2 rounded-full hover:bg-blue-800 hover:text-white cursor-pointer mx-2 transition shadow-sm"
               onClick={() => navigate("/wishlist")}
             >
               <BsBookmarkHeart />
@@ -82,7 +82,7 @@ const Navbar = () => {
               )}
             </li>
             <li
-              className="relative bg-yellow-500 text-white p-2 rounded-full hover:bg-yellow-800 cursor-pointer mx-2 transition shadow-sm"
+              className="relative bg-blue-500 text-white p-2 rounded-full hover:bg-blue-800 cursor-pointer mx-2 transition shadow-sm"
               onClick={() => navigate("/cart")}
             >
               <HiOutlineShoppingBag />

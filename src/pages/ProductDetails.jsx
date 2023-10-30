@@ -13,6 +13,10 @@ import { getProductByIdService } from "../api/apiServices";
 import { StarRating, Similar } from "../components";
 import { notify } from "../utils/utils";
 
+{/* product rating start */}
+// import { RatingList } from "../components/rating/RatingList";
+
+
 const ProductDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -52,7 +56,7 @@ const ProductDetails = () => {
           />
         </section>
 
-        <section className="p-7 px-10 rounded-md shadow-sm bg-white/[0.7] flex flex-col gap-3 sm:gap-5 ">
+        <section className="p-7 px-10 rounded-md shadow-sm bg-white/[0.6] flex flex-col gap-3 sm:gap-5 ">
           <div className="flex flex-col gap-2">
             <h1 className=" text-2xl sm:text-4xl font-bold">{product?.name}</h1>
             <p className=" text-gray-600 text-sm sm:text-base">
@@ -95,7 +99,7 @@ const ProductDetails = () => {
 
           <div className="flex gap-2 items-center pb-10 sm:pb-0">
             Price:
-            <span className="ms-1 text-xl sm:text-2xl text-amber-600">
+            <span className="ms-1 text-xl sm:text-2xl text-red-800">
               {product?.newPrice}VNĐ
             </span>
             <span className="text-sm text-gray-600 line-through">
@@ -155,10 +159,63 @@ const ProductDetails = () => {
           </div>
         </section>
       </main>        
-    </div>              
+    </div>    
+        {/* product rating start */}
+        {/* <div>
+        <RatingList currentProductId={productId}></RatingList>
+        </div> */}
+                {/* product rating end */}
+
         {/* <section>
         <Similar />
         </section> */}
+        
+        <section className="w-full" >
+           <hr className="w-full"/>
+          <br />
+          <h1 className=" text-2xl sm:text-4xl font-bold">Product Rating</h1>
+                    
+          <div className="flex p-6 rounded-md shadow-sm bg-black/[0.05]">
+              <div>
+                 <b className="ms-1 text-xl sm:text-2xl text-blue-800">{product?.rating}</b> out of 5
+                     <div className="flex items-center gap-1">
+                         <StarRating />
+                      </div>
+             </div>
+          {/* </div>
+          <div data-toggle="buttons">
+             <label className="btn-third text-lg text-center bg-white">
+              <input type="radio" name="rate" id="all"/>ALL
+             </label> */}
+                 <button className="btn-third text-lg text-center bg-white rounded-md ml-2 px-2">All</button>
+                 <button className="btn-third text-lg text-center bg-white rounded-md ml-2 px-2">5 Start</button>
+                 <button className="btn-third text-lg text-center bg-white rounded-md ml-2 px-2">4 Start</button>
+                 <button className="btn-third text-lg text-center bg-white rounded-md ml-2 px-2">2 Start</button>
+                 <button className="btn-third text-lg text-center bg-white rounded-md ml-2 px-2">3 Start</button>
+                 <button className="btn-third text-lg text-center bg-white rounded-md ml-2 px-2">1 Start</button>
+          </div>
+             {/*  */}
+             <div className="p-4 rounded-md shadow-sm bg-white mt-2">
+                 <b>user.username</b>
+                 <div className="flex items-center gap-1">
+                     <StarRating />
+                 </div>
+                 <div>
+                     comment
+                 </div>
+             </div>
+             <div className="p-4 rounded-md shadow-sm bg-white  mt-2">
+                <b>user.username</b>
+                 <div className="flex items-center gap-1">
+                     <StarRating />
+                 </div>
+                 <div>
+                     comment
+                 </div>
+           </div>
+            
+         </section>
+
         <br />
         <div className="w-full flex justify-center overflow-hidden ">
           <>

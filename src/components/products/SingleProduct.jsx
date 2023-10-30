@@ -54,7 +54,7 @@ const SingleProduct = ({ product }) => {
             </div>
 
             <div className="flex flex-col items-end">
-              <span className="text-amber-600">{product.newPrice}VNĐ</span>
+              <span className="text-red-800">{product.newPrice}VNĐ</span>
               <span className="text-sm text-gray-600 line-through">
                 {product.price}VNĐ
               </span>
@@ -98,9 +98,9 @@ const SingleProduct = ({ product }) => {
             }}
           >
             {product.inWish ? (
-              <BsFillBookmarkHeartFill className="text-xl text-rose-600 hover:shadow-md transition" />
+              <BsFillBookmarkHeartFill className="text-xl text-red-600 hover:shadow-md transition" />
             ) : (
-              <BsBookmarkHeart className="text-xl hover:text-rose-600 hover:shadow-md transition" />
+              <BsBookmarkHeart className="text-xl hover:text-red-600 hover:shadow-md transition" />
             )}
           </button>
         </div>
