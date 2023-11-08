@@ -6,7 +6,7 @@ import {
   filterByRating,
   filterBySearch,
   sortByPrice,
-  filterByCategory
+  filterByCategory,
 } from "../utils/filterUtils";
 
 const useFilter = () => {

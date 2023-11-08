@@ -22,18 +22,36 @@ const ProductsContextProvider = ({ children }) => {
   const [isOrderPlaced, setisOrderPlaced] = useState(false);
 
   useEffect(() => {
+    //console.log("Token:", token); // Kiểm tra giá trị của token
     setLoading(true);
     (async () => {
       try {
         const productsRes = await getAllProductsService();
+        console.log("productsRes:", productsRes); // Kiểm tra dữ liệu trả về từ API
+
         if (productsRes.status === 200) {
+          const productsData = productsRes.data.products || []; // Kiểm tra dữ liệu
+          console.log("productsData:", productsData); // Kiểm tra dữ liệu sau khi xử lý
+
+          const maxValue = productsData.reduce(
+            (acc, { price }) => (acc > price ? acc : price),
+            0
+          );
+
           dispatch({
             type: actionTypes.INITIALIZE_PRODUCTS,
-            payload: productsRes.data.products,
+            payload: productsData,
+          });
+
+          // Cập nhật maxRange nếu dữ liệu hợp lệ
+          dispatch({
+            type: filterTypes.FILTERS,
+            payload: { filterType: "priceRange", filterValue: maxValue },
           });
         }
 
         const categoryRes = await getAllCategoriesService();
+        console.log("categoryRes:", categoryRes); // Kiểm tra dữ liệu trả về từ API
 
         if (categoryRes.status === 200) {
           dispatch({

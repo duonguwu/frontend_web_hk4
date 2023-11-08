@@ -14,10 +14,11 @@ export const loginService = (email, password) =>
 export const signupService = (username, email, password) =>
   axios.post(SIGNUP_URL, { username, email, password });
 
-export const getAllProductsService = () => axios.get(PRODUCTS_URL);
-
+export const getAllProductsService = () =>
+  axios.get("http://localhost:8000/api/products");
+//axios.get(PRODUCTS_URL);
 export const getProductByIdService = (productId) =>
-  axios.get(`${PRODUCTS_URL}/${productId}`);
+  axios.get(`http://localhost:8000/api/products/${productId}`);
 
 export const getCartItemsService = (token) =>
   axios.get(CART_URL, {
@@ -84,4 +85,5 @@ export const deleteProductFromWishlistService = (productId, token) =>
     },
   });
 
-export const getAllCategoriesService = () => axios.get(CATEGORIES_URL);
+export const getAllCategoriesService = () =>
+  axios.get("http://localhost:8000/api/categories");

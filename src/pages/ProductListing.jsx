@@ -1,6 +1,6 @@
 import { BiFilter } from "react-icons/bi";
 import { MdKeyboardArrowUp } from "react-icons/md";
-
+import axios from "axios";
 import bannerImg from "../assets/bannerHero.jpg";
 import loadingGif from "../assets/loading.gif";
 
@@ -18,6 +18,7 @@ const ProductListing = () => {
 
   const { loading } = useProductsContext();
   const productsList = useFilter();
+
   useEffect(() => {
     if (location?.state?.from === "category") {
       setIsFilterOpen(true);

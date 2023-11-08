@@ -6,6 +6,7 @@ import { Logo } from "../components";
 import { useAuthContext } from "../contexts";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { notify } from "../utils/utils";
 
 const Signup = () => {
   const { signingUp, isAuthenticated } = useAuthContext();
@@ -55,6 +56,7 @@ const Signup = () => {
         userDetails
       );
       localStorage.setItem("token", response?.data?.access_token);
+      notify("success", "Signed Up Successfully!!");
       navigate("/login");
       // Xử lý kết quả trả về từ backend
       // Đăng nhập người dùng sau khi đăng ký thành công

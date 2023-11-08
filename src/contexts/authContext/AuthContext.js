@@ -51,7 +51,7 @@ const AuthContextProvider = ({ children }) => {
       const response = await loginService(email, password);
       console.log({ response });
       if (response.status === 200 || response.status === 201) {
-        localStorage.setItem("token", response?.data?.encodedToken);
+        localStorage.setItem("token", response?.data?.encodedToken); // Sử dụng plainTextToken thay vì accessToken
         localStorage.setItem(
           "userInfo",
           JSON.stringify(response?.data?.foundUser)
