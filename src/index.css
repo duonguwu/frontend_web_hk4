@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  --theme-color: #fbfaf7;
+  --theme-color: #f1fcff;
   --primary-text-color: #252525;
   --secondary-text-color: #807c77;
 }

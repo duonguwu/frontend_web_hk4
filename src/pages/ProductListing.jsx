@@ -1,7 +1,5 @@
 import { BiFilter } from "react-icons/bi";
 import { MdKeyboardArrowUp } from "react-icons/md";
-import axios from "axios";
-import bannerImg from "../assets/bannerHero.jpg";
 import loadingGif from "../assets/loading.gif";
 
 import { Filters, SingleProduct, SortBy } from "../components";
@@ -60,7 +58,7 @@ const ProductListing = () => {
             <img
               src={bannerImg}
               alt="bannerImg"
-              className="rounded-md h-full min-h-[10rem] object-cover"
+              className="rounded-md w-full min-h-[10rem] object-cover"
             />
           </header>
           <section className="py-3 flex flex-col md:flex-row gap-2 justify-between">

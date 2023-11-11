@@ -42,7 +42,7 @@ const AddressCard = ({
         {isEdit && (
           <div className="flex gap-3 py-2">
             <button
-              className="text-amber-500 font-bold"
+              className="text-blue-500 font-bold"
               onClick={() => {
                 setEditAddress(address);
                 setShowAddressForm(true);
@@ -51,7 +51,7 @@ const AddressCard = ({
               Edit
             </button>
             <button
-              className="text-red-600 font-bold"
+              className="text-blue-600 font-bold"
               onClick={() => deleteAddress(id)}
             >
               Remove

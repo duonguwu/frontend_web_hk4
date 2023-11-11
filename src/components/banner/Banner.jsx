@@ -1,6 +1,6 @@
 import { BsArrowDownRightCircle } from "react-icons/bs";
 
-import bannerImg from "../../assets/bannerImg.png";
+import bannerImg from "../../assets/1.jpg";
 import { useNavigate } from "react-router";
 
 const Banner = ({ catRef }) => {
@@ -38,7 +38,7 @@ const Banner = ({ catRef }) => {
         </section>
       </section>
       <section className="hidden w-1/2 lg:flex justify-end">
-        <img src={bannerImg} alt="bannerImg" className="w-2/3 h-full" />
+        <img src={bannerImg} alt="bannerImg" className="w-2/3 h-2/3 rounded-md" />
       </section>
     </main>
   );
