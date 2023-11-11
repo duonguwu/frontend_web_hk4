@@ -2,6 +2,7 @@ import { BiFilter } from "react-icons/bi";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import loadingGif from "../assets/loading.gif";
 
+import bannerImg from "../assets/2.png";
 import { Filters, SingleProduct, SortBy } from "../components";
 
 import { useProductsContext } from "../contexts";

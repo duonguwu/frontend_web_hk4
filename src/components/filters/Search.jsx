@@ -65,7 +65,7 @@ const Search = () => {
         <CiSearch />
       </form>
       {search && showList && (
-        <ul className="absolute bg-amber-50 w-full max-h-72 overflow-auto rounded-b-md z-10">
+        <ul className="absolute bg-blue-50 w-full max-h-72 overflow-auto rounded-b-md z-10">
           {searching ? (
             <li className="h-10 flex items-center justify-center">
               <img src={spinningLoaders} alt="Searching..." />
