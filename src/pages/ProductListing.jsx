@@ -1,8 +1,12 @@
 import { BiFilter } from "react-icons/bi";
-import { MdKeyboardArrowUp } from "react-icons/md";
 import loadingGif from "../assets/loading.gif";
+import scroll from "../assets/ico-direct.png";
+import bannerImg1 from "../assets/2.jpg";
+import bannerImg2 from "../assets/3.jpg";
+import bannerImg3 from "../assets/4.jpg";
+import handleRightImg from "../assets/ico-handleRight.png"
+import handleLeftImg from "../assets/ico-handleLeft.png"
 
-import bannerImg from "../assets/2.png";
 import { Filters, SingleProduct, SortBy } from "../components";
 
 import { useProductsContext } from "../contexts";
@@ -11,12 +15,31 @@ import { useFilter } from "../hooks/filtersHook";
 import { useLocation } from "react-router";
 
 const ProductListing = () => {
+  const bannerImages = [bannerImg1, bannerImg2, bannerImg3];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleLeft = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + bannerImages.length) % bannerImages.length);
+  };
+  
+  const handleRight = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
+  };
+
   const location = useLocation();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [showScrollArrow, setShowScrollArrow] = useState(false);
 
   const { loading } = useProductsContext();
   const productsList = useFilter();
+
+  useEffect(() => {
+    const intervalTimer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
+    }, 4000); 
+  
+    return () => clearInterval(intervalTimer);
+  }, []);
 
   useEffect(() => {
     if (location?.state?.from === "category") {
@@ -55,15 +78,22 @@ const ProductListing = () => {
         </div>
       ) : (
         <div>
-          <header className="mb-3">
+          <header className="mb-3 relative flex">
             <img
-              src={bannerImg}
-              alt="bannerImg"
-              className="rounded-md w-full min-h-[10rem] object-cover"
+               src={bannerImages[currentImageIndex]}
+               alt="bannerImg"
+               className="rounded-md w-full min-h-[10rem] object-cover"
             />
+            <button onClick={handleLeft} className="w-7 h-7 m-2 absolute left-0 top-1/2 -translate-y-1/2">
+              <img src={handleLeftImg} alt=""/>
+            </button>
+            <button onClick={handleRight} className="w-7 h-7 m-2 absolute right-0 top-0 top-1/2 -translate-y-1/2">
+              <img src={handleRightImg} alt="" />
+            </button>
           </header>
+
           <section className="py-3 flex flex-col md:flex-row gap-2 justify-between">
-            <h1 className="text-2xl font-bold">Glasses for You!</h1>
+            <h1 className="text-2xl font-bold">Kính</h1>
             <div className="flex items-center gap-2">
               <Filters
                 isFilterOpen={isFilterOpen}
@@ -77,7 +107,7 @@ const ProductListing = () => {
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
               >
                 <BiFilter className="text-lg" />
-                <span className="text-sm">Filters</span>
+                <span className="text-sm">Bộ lọc</span>
               </button>
             </div>
           </section>
@@ -90,16 +120,17 @@ const ProductListing = () => {
             </main>
           ) : (
             <p className="font-sans text-4xl  font-bold uppercase  tracking-wide text-gray-300 text-center w-full py-32">
-              Nothing to Show!
+              Chưa load dữ liệu
             </p>
           )}
+          
           <button
-            className={` fixed bottom-10 bg-gray-800 right-2 p-2 rounded-full text-xl shadow-2xl transition-all delay-100 ease-in-out ${
+            className={`bg-white fixed flex bottom-20 right-0 p-2 rounded-full text-xl shadow-2xl transition-all delay-100 ease-in-out ${
               showScrollArrow ? "block" : "hidden"
-            }`}
+            }`} style={{ transform: "rotate(90deg)" }}
             onClick={scrollToTop}
           >
-            <MdKeyboardArrowUp className=" text-white" />
+           <img src={scroll} alt="" className="w-5 h-5" style={{ transform: "rotate(180deg)" }}/> Về đầu trang
           </button>
         </div>
       )}

@@ -7,12 +7,12 @@ const MenuDropdown = ({ navigate }) => {
       <ul className="text-sm  ">
         <li onClick={() => navigate("/wishlist")}>
           <span className="flex items-center px-5 py-3 hover:bg-blue-100 ">
-            <BsBookmarkHeart className="text-lg me-3" /> Wishlist
+            <BsBookmarkHeart className="text-lg me-3" /> Yêu thích
           </span>
         </li>
         <li onClick={() => navigate("/cart")}>
           <span className="flex items-center px-5 py-3 hover:bg-blue-100 ">
-            <HiOutlineShoppingBag className="text-lg me-3" /> Bag
+            <HiOutlineShoppingBag className="text-lg me-3" /> Giỏ hàng
           </span>
         </li>
       </ul>
