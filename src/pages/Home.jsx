@@ -32,8 +32,10 @@ const Home = () => {
   return (
     <>
       <Banner catRef={catRef} />
-      <Trending />
       <CategoryList catRef={catRef} />
+      <br />
+      <Trending />
+      <br />
       <Footer />
       <button
             className={` fixed flex bg-white bottom-20 right-0 p-2 rounded-full text-xl shadow-2xl transition-all delay-100 ease-in-out ${
