@@ -59,7 +59,7 @@ const Search = () => {
           className="w-full py-2 px-3 bg-transparent focus:outline-none"
           type="search"
           value={search}
-          placeholder="Search Glasses"
+          placeholder="Tìm kiếm"
           onChange={changeHandler}
         />
         <CiSearch />
