@@ -1,5 +1,5 @@
 import { BsArrowDownRightCircle } from "react-icons/bs";
-
+import React from 'react';
 import bannerImg from "../../assets/1.jpg";
 import { useNavigate } from "react-router";
 
@@ -7,39 +7,34 @@ const Banner = ({ catRef }) => {
   const navigate = useNavigate();
 
   return (
-    <main className=" flex justify-between items-center py-1 mb-5  relative">
-      <section className="max-w-xl mx-auto sm:mx-0  w-full py-2  lg:w-1/3">
-        <h1 className="text-6xl  sm:text-7xl lg:text-8xl font-semibold  py-3 w-full ">
-          Glasses & Lens
-        </h1>
-        <p className="py-3 text-md  text-gray-600">
-          Buy the best high-quality sunglasses from us.
-          <br />
-          More than 100 types of assortment.
-        </p>
-        <section className="flex items-center">
-          <button
-            className="btn-primary text-sm md:text-base"
-            onClick={() => navigate("/products")}
-          >
-            Start Shopping
-          </button>
-          <button
-            className="p-3 flex items-center"
-            onClick={() =>
-              catRef.current.scrollIntoView({
-                behavior: "smooth",
-              })
-            }
-          >
-            <span className="mx-2 text-sm md:text-base">Explore More</span>{" "}
-            <BsArrowDownRightCircle className="text-lg" />
-          </button>
+    <main className="w-full">
+      <div className="w-full justify-between items-center mb-1 relative">
+        <section className="w-full mx-auto sm:mx-0">
+          <div className="absolute top-0 left-0 w-full h-full rounded-xl bg-black/[0.2]"></div>
+          <img src={bannerImg} alt="bannerImg" className=" w-full rounded-xl z-20" />
+          <section className=" items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+            <button
+              className="btn-primary lg:text-3xl md:text-sm"
+              onClick={() => navigate("/products")}
+            >
+             Mua sắm ngay
+            </button>
+            <div className="pt-2 flex items-center justify-center">
+            <button
+              className="pt-2 flex items-center"
+              onClick={() =>
+                catRef.current.scrollIntoView({
+                  behavior: "smooth",
+                })
+              }
+            >
+              <span className="text-xl lg:text-2xl sm:text-sm pr-2">Khám phá thêm</span>{" "}
+              <BsArrowDownRightCircle className="text-lg" />
+            </button>
+            </div>
+          </section>
         </section>
-      </section>
-      <section className="hidden w-1/2 lg:flex justify-end">
-        <img src={bannerImg} alt="bannerImg" className="w-2/3 h-2/3 rounded-md" />
-      </section>
+      </div>
     </main>
   );
 };

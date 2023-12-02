@@ -8,7 +8,7 @@ const Footer = () => {
   <div className="flex flex-col bg-blue-50 justify-center items-center absolute right-0 left-0 px-4">
     <h2 className="text-2x1 md:text-2xl mt-4 text-blue-900"><b>CÔNG TY TNHH MATVIET - Nhóm 2</b></h2>
       <ul className="flex flex-row gap-1 md:gap-20 py-4">
-        <li className="flex-1"><b>VỀ CHÚNG TÔI</b>
+        <li className="flex-1"><b>THÀNH VIÊN</b>
           <ul>
             <li>Nguyễn Dương</li>
             <li>Nguyễn Duy Đạt</li>

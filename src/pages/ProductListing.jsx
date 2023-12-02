@@ -78,7 +78,7 @@ const ProductListing = () => {
         </div>
       ) : (
         <div>
-          <header className="mb-3 relative flex">
+          <header className="relative flex mb-3">
             <img
                src={bannerImages[currentImageIndex]}
                alt="bannerImg"
@@ -87,20 +87,17 @@ const ProductListing = () => {
             <button onClick={handleLeft} className="w-7 h-7 m-2 absolute left-0 top-1/2 -translate-y-1/2">
               <img src={handleLeftImg} alt=""/>
             </button>
-            <button onClick={handleRight} className="w-7 h-7 m-2 absolute right-0 top-0 top-1/2 -translate-y-1/2">
+            <button onClick={handleRight} className="w-7 h-7 m-2 absolute right-0 top-1/2 -translate-y-1/2">
               <img src={handleRightImg} alt="" />
             </button>
           </header>
 
           <section className="py-3 flex flex-col md:flex-row gap-2 justify-between">
-            <h1 className="text-2xl font-bold">Kính</h1>
+            <h1 className="text-3xl font-bold">Tất cả sản phẩm</h1>
             <div className="flex items-center gap-2">
-              <Filters
-                isFilterOpen={isFilterOpen}
-                setIsFilterOpen={setIsFilterOpen}
-              />
+              
               <SortBy />
-              <button
+              {/* <button
                 className={`flex py-1 px-2 rounded-md shadow-md items-center  gap-1 hover:bg-[--primary-text-color] hover:text-white hover:shadow-lg ${
                   isFilterOpen ? "bg-[--primary-text-color] text-white" : ""
                 }`}
@@ -108,21 +105,27 @@ const ProductListing = () => {
               >
                 <BiFilter className="text-lg" />
                 <span className="text-sm">Bộ lọc</span>
-              </button>
+              </button> */}
             </div>
           </section>
+          <main className="relative flex flex-col lg:flex-row items-start py-1 mb-5 w-full">
+  <div className="hidden lg:flex w-1/6 flex-col p-3 gap-3 overflow-auto bg-white border-r border-gray-200">
+    <Filters />
+  </div>
+  <section className="flex-grow w-auto grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3">
+    {productsList.length > 0 ? (
+      productsList.map((glass) => (
+        <SingleProduct key={glass.id} product={glass} />
+      ))
+    ) : (
+      <p className="font-sans text-4xl font-bold uppercase tracking-wide text-gray-300 text-center w-full py-32">
+        Chưa load dữ liệu
+      </p>
+    )}
+  </section>
+</main>
 
-          {productsList.length > 0 ? (
-            <main className="relative grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-              {productsList.map((glass) => (
-                <SingleProduct key={glass.id} product={glass} />
-              ))}
-            </main>
-          ) : (
-            <p className="font-sans text-4xl  font-bold uppercase  tracking-wide text-gray-300 text-center w-full py-32">
-              Chưa load dữ liệu
-            </p>
-          )}
+
           
           <button
             className={`bg-white fixed flex bottom-20 right-0 p-2 rounded-full text-xl shadow-2xl transition-all delay-100 ease-in-out ${
@@ -130,7 +133,7 @@ const ProductListing = () => {
             }`} style={{ transform: "rotate(90deg)" }}
             onClick={scrollToTop}
           >
-           <img src={scroll} alt="" className="w-5 h-5" style={{ transform: "rotate(180deg)" }}/> Về đầu trang
+           <img src={scroll} alt="" className="w-5 h-5" style={{ transform: "rotate(180deg)" }}/> 
           </button>
         </div>
       )}

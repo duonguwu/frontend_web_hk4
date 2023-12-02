@@ -7,7 +7,7 @@ const InputRadioType2 = ({ data }) => {
   } = useProductsContext();
   return (
     <label
-      className={`p-2 rounded-md  shadow-sm text-center capitalize ${
+      className={`p-2.5 rounded-md  shadow-sm text-center capitalize ${
         gender === data
           ? "bg-[--primary-text-color] text-white "
           : "bg-black/[0.1] hover:bg-[--primary-text-color] hover:text-white"

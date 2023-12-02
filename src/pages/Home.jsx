@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Banner, CategoryList, Footer, Trending } from "../components";
 import scroll from "../assets/ico-direct.png";
 import { useEffect, useState } from "react";
-
+import React from 'react';
 
 const Home = () => {
   const catRef = useRef(null);
@@ -43,7 +43,7 @@ const Home = () => {
             }`} style={{ transform: "rotate(90deg)" }}
             onClick={scrollToTop}
           >
-           <img src={scroll} alt="" className="w-5 h-5" style={{ transform: "rotate(180deg)" }}/> Về đầu trang
+           <img src={scroll} alt="" className="w-5 h-5" style={{ transform: "rotate(180deg)" }}/> 
       </button>
     </>
   );

@@ -11,17 +11,17 @@ const SortBy = () => {
       <select
         name="sortBy"
         value={sortBy}
-        className="w-max py-1 px-2 rounded-md cursor-pointer shadow-md   hover:shadow-lg "
+        className="w-max py-1 px-2 rounded-md cursor-pointer shadow-md hover:shadow-lg "
         onChange={(e) => applyFilters("sortBy", e.target.value)}
       >
         <option value="" defaultValue="" disabled>
-          Sort By Price
+          Sắp xếp theo giá
         </option>
-        <option value="low_to_high" className="">
-          Low to High
+        <option classname="py-1" value="low_to_high">
+          Tăng dần
         </option>
-        <option value="high_to_low" className="">
-          High to Low
+        <option value="high_to_low" className="py-1">
+          Giảm dần
         </option>
       </select>
     </label>

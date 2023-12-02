@@ -1,11 +1,11 @@
 .btn-primary {
-  @apply py-2 px-4 bg-gray-900  text-gray-100 rounded-lg hover:bg-gray-800 disabled:bg-opacity-50 disabled:hover:bg-opacity-50;
+  @apply py-2 px-4 bg-gray-700  text-gray-100 rounded-lg hover:bg-gray-900 disabled:bg-opacity-50 disabled:hover:bg-opacity-50;
 }
 .btn-secondary {
   @apply py-2 px-4 border border-[--primary-text-color] rounded-lg hover:bg-[--primary-text-color] hover:text-white transition;
 }
 .btn-third {
-  @apply py-2 px-4 border border-blue-900 rounded-lg hover:bg-blue-900 hover:text-white transition;
+  @apply py-2 px-4 bg-white/[0.5] shadow-md rounded-lg hover:bg-blue-900 hover:text-white transition;
 }
 .btn-rounded-primary {
   @apply border  bg-[--primary-text-color] text-white py-1.5   rounded-full px-6  transition hover:bg-gray-800;

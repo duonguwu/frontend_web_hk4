@@ -17,7 +17,7 @@ const InputRadio = ({ data, name }) => {
         onChange={(e) => applyFilters(name, data)}
         checked={data === rating}
       />{" "}
-      {data} Stars & above
+      Từ {data} sao trở lên
     </label>
   );
 };

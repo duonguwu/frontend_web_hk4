@@ -8,14 +8,12 @@ const CategoryCard = ({
   const navigate = useNavigate();
   const { applyFilters } = useProductsContext();
   const [showCategory, setShowCategory] = useState(true);
-  const [categories, setCategories] = useState([]); // State để lưu danh mục
+  const [categories, setCategories] = useState([]); 
 
-  // Sử dụng useEffect để tải danh mục từ API khi component được tạo
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/categories") // Đảm bảo URL endpoint đúng
       .then((response) => {
-        // Lưu danh sách danh mục vào state
         setCategories(response.data.categories);
       })
       .catch((error) => {
@@ -39,7 +37,7 @@ const CategoryCard = ({
         className="rounded-xl h-full w-full object-cover transition-all delay-75 ease-out"
       />
       <div className="flex flex-col w-full h-full justify-center items-center transition-all delay-75 absolute left-0 right-0 bottom-0 top-0 bg-black/[0.3] rounded-xl">
-        <h1 className="text-4xl xs:text-6xl sm:text-8xl lg:text-6xl font-extrabold capitalize text-[--theme-color] shadow-sm p-3 break-all">
+        <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-6xl font-extrabold capitalize text-[--theme-color] shadow-sm p-3 break-all">
           {categoryName}
         </h1>
       </div>

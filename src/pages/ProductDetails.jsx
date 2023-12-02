@@ -13,10 +13,6 @@ import { getProductByIdService } from "../api/apiServices";
 import { StarRating, Similar } from "../components";
 import { notify } from "../utils/utils";
 
-{/* product rating start */}
-// import { RatingList } from "../components/rating/RatingList";
-
-
 const ProductDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,13 +42,13 @@ const ProductDetails = () => {
   return (
     <div>
         
-    <div className="md:min-h-[60vh] flex justify-center items-center pt-5 sm:pt-3 pb-2 relative">
+    <div className="md:min-h-[60vh] flex justify-center items-center py-5 sm:py-3 relative">
       <main className="grid grid-rows-1 sm:grid-cols-2 gap-2 sm:gap-10 ">
         <section className="relative p-7 bg-black/[0.075]  flex items-center justify-center rounded-lg">
           <img
             src={product?.image}
             alt=""
-            className="w-full object-contain max-w-xs"
+            className={`w-full object-contain max-w-xs`}
           />
         </section>
 
@@ -66,13 +62,13 @@ const ProductDetails = () => {
               <StarRating />
 
               <span className="text-xs text-gray-400">
-                ({product?.rating}) Rating
+                ({product?.rating}) 
               </span>
             </div>
           </div>
 
           <div className="flex flex-col gap-2  ">
-            <h2 className="  text-lg font-semibold">About Product</h2>
+            <h2 className="  text-lg font-semibold">Về sản phẩm</h2>
             <ul className="flex gap-5">
               <div>
                 <li>
@@ -80,17 +76,17 @@ const ProductDetails = () => {
                   {product?.brand}
                 </li>
                 <li>
-                  <span className="text-gray-500 text-sm">Category: </span>
+                  <span className="text-gray-500 text-sm">Loại: </span>
                   {product?.category}
                 </li>
               </div>
               <div>
                 <li>
-                  <span className="text-gray-500 text-sm">Gender: </span>
+                  <span className="text-gray-500 text-sm">Giới tính: </span>
                   {product?.gender}
                 </li>
                 <li>
-                  <span className="text-gray-500 text-sm">Heavy: </span>
+                  <span className="text-gray-500 text-sm">Nặng: </span>
                   {product?.weight}
                 </li>
               </div>
@@ -101,10 +97,11 @@ const ProductDetails = () => {
             Price:
             <span className="ms-1 text-xl sm:text-2xl text-red-800">
               {product?.newPrice}VNĐ
-            </span>
-            <span className="text-sm text-gray-600 line-through">
+              <span className="text-sm text-gray-600 line-through">
               {product?.price}VNĐ
             </span>
+            </span>
+            
           </div>
 
           <div className={`w-full   flex gap-4 items-center   flex-wrap  `}>
@@ -147,12 +144,12 @@ const ProductDetails = () => {
               {product?.inWish ? (
                 <>
                   <BsFillBookmarkHeartFill />
-                  <span>Remove from Wishlist</span>
+                  <span>Xóa yêu thích</span>
                 </>
               ) : (
                 <>
                   {" "}
-                  <BsBookmarkHeart /> <span>Wishlist Item</span>
+                  <BsBookmarkHeart /> <span>Yêu thích</span>
                 </>
               )}{" "}
             </button>
@@ -170,12 +167,11 @@ const ProductDetails = () => {
         <Similar />
         </section> */}
         
-        <section className="w-full" >
+        <section className="w-full py-5 sm:py-3" >
            <hr className="w-full"/>
-          <br />
-          <h1 className=" text-2xl sm:text-4xl font-bold">Product Rating</h1>
+          <h1 className=" text-2xl sm:text-4xl font-bold py-5 sm:py-3">Đánh giá sản phẩm</h1>
                     
-          <div className="flex p-6 rounded-md shadow-sm bg-black/[0.05]">
+          <div className="flex p-6 rounded-md shadow-sm bg-black/[0.07]">
               <div>
                  <b className="ms-1 text-xl sm:text-2xl text-blue-800">{product?.rating}</b> out of 5
                      <div className="flex items-center gap-1">
@@ -195,7 +191,7 @@ const ProductDetails = () => {
                  <button className="btn-third text-lg text-center bg-white rounded-md ml-2 px-2">1 Start</button>
           </div>
              {/*  */}
-             <div className="p-4 rounded-md shadow-sm bg-white mt-2">
+             <div className="p-4 rounded-md shadow-sm bg-white/[0.9] mt-2">
                  <b>user.username</b>
                  <div className="flex items-center gap-1">
                      <StarRating />
@@ -204,7 +200,7 @@ const ProductDetails = () => {
                      comment
                  </div>
              </div>
-             <div className="p-4 rounded-md shadow-sm bg-white  mt-2">
+             <div className="p-4 rounded-md shadow-sm bg-white/[0.9]  mt-2">
                 <b>user.username</b>
                  <div className="flex items-center gap-1">
                      <StarRating />
@@ -212,11 +208,9 @@ const ProductDetails = () => {
                  <div>
                      comment
                  </div>
-           </div>
-            
+           </div>       
          </section>
 
-        <br />
         <div className="w-full flex justify-center overflow-hidden ">
           <>
 
