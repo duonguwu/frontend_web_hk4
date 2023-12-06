@@ -11,6 +11,14 @@ export const filterByGender = (selectedGender, data) => {
   if (!selectedGender || selectedGender.toLowerCase() === "all") {
     return data;
   } else {
+    // console.log("selectedGender:", selectedGender);
+    // console.log(
+    //   "selectedGender:",
+    //   data.filter(
+    //     ({ gender }) => gender.toLowerCase() === selectedGender.toLowerCase()
+    //   )
+    // );
+
     return data.filter(
       ({ gender }) => gender.toLowerCase() === selectedGender.toLowerCase()
     );
@@ -28,12 +36,18 @@ export const filterByRating = (selectedRating, data) => {
 };
 
 export const filterByCheckbox = (selectedCategories, data) => {
-  return selectedCategories.length
-    ? data.filter(({ category }) =>
-        selectedCategories.includes(category.toLowerCase())
-      )
+  return selectedCategories
+    ? data.filter(({ category }) => category.includes(selectedCategories))
     : data;
 };
+
+// export const filterByCheckbox = (selectedCategories, data) => {
+//   return selectedCategories.length
+//     ? data.filter(({ category }) =>
+//         selectedCategories.some((cat) => category.includes(cat))
+//       )
+//     : data;
+// };
 
 export const filterBySearch = (searchText, data) => {
   const searchLowerCased = searchText.toLowerCase();

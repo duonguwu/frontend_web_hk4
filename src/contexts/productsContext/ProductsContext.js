@@ -58,6 +58,7 @@ const ProductsContextProvider = ({ children }) => {
             type: actionTypes.INITIALIZE_CATEGORIES,
             payload: categoryRes.data.categories,
           });
+          console.log("categoryList after initialization:", state.categoryList);
         }
       } catch (e) {
         console.log(e);
@@ -91,6 +92,7 @@ const ProductsContextProvider = ({ children }) => {
   };
 
   const applyFilters = (filterType, filterValue) => {
+    //console.log("Value: ", filterValue);
     dispatch({
       type: filterTypes.FILTERS,
       payload: { filterType, filterValue },

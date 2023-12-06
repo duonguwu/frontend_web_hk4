@@ -4,8 +4,8 @@ import scroll from "../assets/ico-direct.png";
 import bannerImg1 from "../assets/2.jpg";
 import bannerImg2 from "../assets/3.jpg";
 import bannerImg3 from "../assets/4.jpg";
-import handleRightImg from "../assets/ico-handleRight.png"
-import handleLeftImg from "../assets/ico-handleLeft.png"
+import handleRightImg from "../assets/ico-handleRight.png";
+import handleLeftImg from "../assets/ico-handleLeft.png";
 
 import { Filters, SingleProduct, SortBy } from "../components";
 
@@ -19,9 +19,11 @@ const ProductListing = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleLeft = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + bannerImages.length) % bannerImages.length);
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex - 1 + bannerImages.length) % bannerImages.length
+    );
   };
-  
+
   const handleRight = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
   };
@@ -32,12 +34,15 @@ const ProductListing = () => {
 
   const { loading } = useProductsContext();
   const productsList = useFilter();
+  // console.log("Filtered Products:", productsList);
 
   useEffect(() => {
     const intervalTimer = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
-    }, 4000); 
-  
+      setCurrentImageIndex(
+        (prevIndex) => (prevIndex + 1) % bannerImages.length
+      );
+    }, 4000);
+
     return () => clearInterval(intervalTimer);
   }, []);
 
@@ -80,14 +85,20 @@ const ProductListing = () => {
         <div>
           <header className="mb-3 relative flex">
             <img
-               src={bannerImages[currentImageIndex]}
-               alt="bannerImg"
-               className="rounded-md w-full min-h-[10rem] object-cover"
+              src={bannerImages[currentImageIndex]}
+              alt="bannerImg"
+              className="rounded-md w-full min-h-[10rem] object-cover"
             />
-            <button onClick={handleLeft} className="w-7 h-7 m-2 absolute left-0 top-1/2 -translate-y-1/2">
-              <img src={handleLeftImg} alt=""/>
+            <button
+              onClick={handleLeft}
+              className="w-7 h-7 m-2 absolute left-0 top-1/2 -translate-y-1/2"
+            >
+              <img src={handleLeftImg} alt="" />
             </button>
-            <button onClick={handleRight} className="w-7 h-7 m-2 absolute right-0 top-0 top-1/2 -translate-y-1/2">
+            <button
+              onClick={handleRight}
+              className="w-7 h-7 m-2 absolute right-0 top-0 top-1/2 -translate-y-1/2"
+            >
               <img src={handleRightImg} alt="" />
             </button>
           </header>
@@ -123,14 +134,21 @@ const ProductListing = () => {
               Chưa load dữ liệu
             </p>
           )}
-          
+
           <button
             className={`bg-white fixed flex bottom-20 right-0 p-2 rounded-full text-xl shadow-2xl transition-all delay-100 ease-in-out ${
               showScrollArrow ? "block" : "hidden"
-            }`} style={{ transform: "rotate(90deg)" }}
+            }`}
+            style={{ transform: "rotate(90deg)" }}
             onClick={scrollToTop}
           >
-           <img src={scroll} alt="" className="w-5 h-5" style={{ transform: "rotate(180deg)" }}/> Về đầu trang
+            <img
+              src={scroll}
+              alt=""
+              className="w-5 h-5"
+              style={{ transform: "rotate(180deg)" }}
+            />{" "}
+            Về đầu trang
           </button>
         </div>
       )}

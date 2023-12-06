@@ -58,6 +58,7 @@ export const productsReducer = (state, action) => {
         wishlist: action.payload,
       };
     case filterTypes.FILTERS:
+      // console.log("Received filter action:", action.payload);
       return {
         ...state,
         filters: {

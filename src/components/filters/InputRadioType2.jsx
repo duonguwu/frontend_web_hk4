@@ -5,6 +5,8 @@ const InputRadioType2 = ({ data }) => {
     applyFilters,
     filters: { gender },
   } = useProductsContext();
+  // In ra giá trị của gender
+  // console.log("Gender:", gender);
   return (
     <label
       className={`p-2 rounded-md  shadow-sm text-center capitalize ${
