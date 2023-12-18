@@ -104,9 +104,19 @@ const CartItemCard = ({ product, isSearch, setSearch }) => {
           </div>
         </div>
         <div className="flex flex-col items-end">
-          <span>{product.newPrice}VNĐ</span>
-          <span className="text-xs line-through text-gray-600">
-            {product.price}VNĐ
+          <span className="text-red-800  sm:text-xl">
+            {" "}
+            {new Intl.NumberFormat("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            }).format(product.newPrice)}
+          </span>
+          <span className="text-gray-600 line-through text-m">
+            {" "}
+            {new Intl.NumberFormat("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            }).format(product.price)}
           </span>
         </div>
       </div>

@@ -100,11 +100,25 @@ const ProductDetails = () => {
 
             <div className="flex gap-2 items-center pb-10 sm:pb-0">
               Price:
-              <span className="ms-1 text-xl sm:text-2xl text-red-800">
+              {/* <span className="ms-1 text-xl sm:text-2xl text-red-800">
                 {product?.newPrice}VNĐ
+              </span> */}
+              <span className="text-red-800 ms-1 text-xl sm:text-2xl ">
+                {" "}
+                {new Intl.NumberFormat("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                }).format(product?.newPrice)}
               </span>
-              <span className="text-sm text-gray-600 line-through">
+              {/* <span className="text-sm text-gray-600 line-through">
                 {product?.price}VNĐ
+              </span> */}
+              <span className="text-gray-600 line-through text-sm">
+                {" "}
+                {new Intl.NumberFormat("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                }).format(product.price)}
               </span>
             </div>
 

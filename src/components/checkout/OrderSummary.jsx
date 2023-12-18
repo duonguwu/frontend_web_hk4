@@ -53,7 +53,13 @@ const OrderSummary = ({ setOrderData, paymentMethod }) => {
       <hr />
       <div className="flex justify-between items-center">
         <p className=" text-gray-600">Tổng</p>
-        <p className="text-2xl">{totalPriceOfCartProducts}VNĐ</p>
+        <p className="text-2xl">
+          {" "}
+          {new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+          }).format(totalPriceOfCartProducts)}
+        </p>
       </div>
     </div>
   );

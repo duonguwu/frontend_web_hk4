@@ -20,3 +20,6 @@ export { default as AddressCard } from "./address/AddressCard";
 export { default as AddressForm } from "./address/AddressForm";
 
 export { default as Loader } from "./loader/Loader";
+
+export { default as InvoiceList } from "./invoices/InvoiceList";
+export { default as InvoiceDetails } from "./invoices/InvoiceDetails";

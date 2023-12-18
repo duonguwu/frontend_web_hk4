@@ -4,7 +4,8 @@ const SimilarCard = ({ product }) => {
   return (
     <Link
       to={`/product/${product._id}`}
-      className="flex flex-col    px-4 py-2 rounded-xl  bg-gray-200 cursor-pointer gap-3 " >
+      className="flex flex-col    px-4 py-2 rounded-xl  bg-gray-200 cursor-pointer gap-3 "
+    >
       <div className="flex justify-between gap-3 xs:flex-wrap xs:justify-center sm:flex-nowrap sm:justify-between">
         <div>
           <h1 className="text-xl xs:text-base sm:text-xl font-bold">
@@ -13,9 +14,13 @@ const SimilarCard = ({ product }) => {
         </div>
         <div className="flex flex-col items-start ">
           <div className="flex items-center justify-between">
-            <h1 className=" text-lg xs:text-base sm:text-lg font-bold text-orange-800">
-              {product.price}VNĐ
-            </h1>
+            <span className="text-red-800 ">
+              {" "}
+              {new Intl.NumberFormat("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              }).format(product.newPrice)}
+            </span>
           </div>
           <p className="text-gray-600 text-sm text-end">{product.category}</p>
         </div>

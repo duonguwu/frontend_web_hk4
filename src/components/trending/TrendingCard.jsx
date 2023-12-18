@@ -17,7 +17,11 @@ const TrendingCard = ({ product }) => {
         <div className="flex flex-col items-start ">
           <div className="flex items-center justify-between">
             <h1 className=" text-lg xs:text-base sm:text-lg font-bold">
-              {product.price}VNĐ
+              {" "}
+              {new Intl.NumberFormat("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              }).format(product?.newPrice)}
             </h1>
             <button className="p-0.5 custom-bg-gradient rounded-md ms-2">
               {product.inCart ? (

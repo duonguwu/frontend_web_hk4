@@ -7,7 +7,13 @@ const PriceCard = ({ product }) => {
         {product.name} ({product.qty})
       </p>
 
-      <p className="text-lg">{product.qty * product.newPrice}VNĐ</p>
+      <p className="text-lg">
+        {" "}
+        {new Intl.NumberFormat("vi-VN", {
+          style: "currency",
+          currency: "VND",
+        }).format(product.qty * product.newPrice)}
+      </p>
     </div>
   );
 };

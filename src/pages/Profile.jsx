@@ -2,7 +2,12 @@ import { useState } from "react";
 
 import { useAuthContext, useProductsContext } from "../contexts";
 
-import { AddressCard, AddressForm } from "../components";
+import {
+  AddressCard,
+  AddressForm,
+  InvoiceDetails,
+  InvoiceList,
+} from "../components";
 import Address from "../components/address/Address";
 
 const Profile = () => {
@@ -15,7 +20,12 @@ const Profile = () => {
   const [loggingOut, setLoggingOut] = useState(false);
 
   const { logoutHandler } = useAuthContext();
+  const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
 
+  const handleSelectInvoice = (invoiceId) => {
+    setSelectedItem("invoice");
+    setSelectedInvoiceId(invoiceId);
+  };
   const handleLogOut = () => {
     setLoggingOut(true);
     setTimeout(() => {
@@ -25,55 +35,72 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-[80vh] min-w-md max-w-lg m-auto mt-10">
-      <section className="h-full p-7 rounded-md shadow-sm bg-white/[0.7] flex flex-col gap-6 w-full">
-        <div className="flex">
+    <div className="min-h-[80vh] min-w-md max-w-none m-auto mt-6">
+      <section className="h-full p-7 rounded-md shadow-sm bg-white/[0.7] flex w-full">
+        <div className="flex-none w-1/4">
           <button
-            className={`flex-1 text-sm  ${
+            className={`text-sm mb-3 ${
               selectedItem === "profile"
                 ? "bg-[--primary-text-color] text-white"
                 : "bg-gray-100"
-            } p-3 shadow-sm transition-colors `}
+            } p-5 shadow-sm transition-colors w-full text-left`}
             onClick={() => setSelectedItem("profile")}
           >
             Thông tin cá nhân
           </button>
           <button
             onClick={() => setSelectedItem("address")}
-            className={`flex-1 text-sm  ${
+            className={`text-sm mb-3 ${
               selectedItem === "address"
                 ? "bg-[--primary-text-color] text-white"
                 : "bg-gray-100"
-            } p-3 shadow-sm transition-colors `}
+            } p-5 shadow-sm transition-colors w-full text-left`}
           >
             Địa chỉ
           </button>
+          <button
+            onClick={() => setSelectedItem("invoice")}
+            className={`text-sm mb-3 ${
+              selectedItem === "invoice"
+                ? "bg-[--primary-text-color] text-white"
+                : "bg-gray-100"
+            } p-5 shadow-sm transition-colors w-full text-left`}
+          >
+            Hóa đơn
+          </button>
         </div>
-        {selectedItem === "profile" ? (
-          <div className="flex flex-col gap-4 w-full p-5">
-            <p>
-              <span className="text-gray-600 me-1">Username:</span>
-              <span className="break-all">{userDetails?.name}</span>
-            </p>
-            <p>
-              {" "}
-              <span className="text-gray-600 me-1">Email:</span>{" "}
-              <span className="break-all">{userDetails?.email ?? ""}</span>
-            </p>
-            <hr />
-            <button
-              disabled={loggingOut}
-              className="w-1/2 text-sm bg-rose-600 py-2 px-4 text-white rounded-md hover:bg-rose-700"
-              onClick={handleLogOut}
-            >
-              {loggingOut ? "Logging Out..." : "Logout"}
-            </button>
-          </div>
-        ) : (
-          <section className=" rounded-md shadow-sm bg-white/[0.7] flex flex-col gap-6 w-full h-min">
-            <Address isEdit />
-          </section>
-        )}
+        <div className="flex-1 ml-4">
+          {selectedItem === "invoice" ? (
+            selectedInvoiceId ? (
+              <InvoiceDetails invoiceId={selectedInvoiceId} />
+            ) : (
+              <InvoiceList onSelectInvoice={handleSelectInvoice} />
+            )
+          ) : selectedItem === "profile" ? (
+            <div className="flex flex-col gap-4 w-full p-5">
+              <p>
+                <span className="text-gray-600 me-1">Username:</span>
+                <span className="break-all">{userDetails?.name}</span>
+              </p>
+              <p>
+                <span className="text-gray-600 me-1">Email:</span>
+                <span className="break-all">{userDetails?.email ?? ""}</span>
+              </p>
+              <hr />
+              <button
+                disabled={loggingOut}
+                className="w-1/2 text-sm bg-rose-600 py-2 px-4 text-white rounded-md hover:bg-rose-700"
+                onClick={handleLogOut}
+              >
+                {loggingOut ? "Logging Out..." : "Logout"}
+              </button>
+            </div>
+          ) : (
+            <section className=" rounded-md shadow-sm bg-white/[0.7] flex flex-col gap-6 w-full h-min">
+              <Address isEdit />
+            </section>
+          )}
+        </div>
       </section>
     </div>
   );
