@@ -36,7 +36,7 @@ const Profile = () => {
             } p-3 shadow-sm transition-colors `}
             onClick={() => setSelectedItem("profile")}
           >
-            Profile
+            Thông tin cá nhân
           </button>
           <button
             onClick={() => setSelectedItem("address")}
@@ -46,7 +46,7 @@ const Profile = () => {
                 : "bg-gray-100"
             } p-3 shadow-sm transition-colors `}
           >
-            Address
+            Địa chỉ
           </button>
         </div>
         {selectedItem === "profile" ? (

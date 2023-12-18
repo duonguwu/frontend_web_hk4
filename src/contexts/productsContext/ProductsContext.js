@@ -72,6 +72,7 @@ const ProductsContextProvider = ({ children }) => {
     state.allProducts.find((product) => product._id === productId);
 
   const updateInCartOrInWish = (productId, type, value) => {
+    console.log("Product ID is receive:", productId);
     if (productId) {
       dispatch({
         type: actionTypes.UPDATE_PRODUCTS,

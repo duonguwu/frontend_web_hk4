@@ -11,7 +11,7 @@ const Orders = () => {
     } else {
       setTimeout(() => {
         navigate("/products");
-      }, 3000);
+      }, 9000);
     }
   }, []);
   return (
@@ -25,11 +25,9 @@ const Orders = () => {
           />
         </div>
         <p className="text-3xl py-2 font-semibold text-gray-700">
-          Order Successful
+          Đặt hàng thành công
         </p>
-        <p className="text-sm text-gray-400">
-          Thank you for ordering with us :)
-        </p>
+        <p className="text-sm text-gray-400">Cảm ơn vì đã mua hàng :)</p>
       </div>
     </div>
   );

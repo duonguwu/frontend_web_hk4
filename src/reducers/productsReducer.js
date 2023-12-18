@@ -41,6 +41,10 @@ export const productsReducer = (state, action) => {
       };
 
     case actionTypes.UPDATE_PRODUCTS:
+      console.log(
+        "UPDATE_PRODUCTS action dispatched with payload:",
+        action.payload
+      );
       return {
         ...state,
         allProducts: action.payload,

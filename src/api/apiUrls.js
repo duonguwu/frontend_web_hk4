@@ -16,3 +16,6 @@ export const CART_URL = `${baseUrl}/user/cart`;
 
 //wishlist url
 export const WISHLIST_URL = `${baseUrl}/user/wishlist`;
+
+// checkout url
+export const CHECKOUT_URL = `${baseUrl}/user/checkout`;

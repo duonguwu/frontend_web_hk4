@@ -20,6 +20,16 @@ export const cartReducer = (state, action) => {
         ...state,
         cart: action.payload,
       };
+    // case "SET_PAYMENT_METHOD":
+    //   return {
+    //     ...state,
+    //     paymentMethod: action.payload,
+    //   };
+    // case "SET_PAYMENT_COMPLETE":
+    //   return {
+    //     ...state,
+    //     paymentComplete: action.payload,
+    //   };
 
     default:
       return state;

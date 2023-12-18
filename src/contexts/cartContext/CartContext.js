@@ -26,12 +26,14 @@ const CartContextProvider = ({ children }) => {
       (async () => {
         try {
           const cartRes = await getCartItemsService(token);
-
+          console.log("Request Data:", cartRes.config);
+          console.log("Response Data:", cartRes.data);
           if (cartRes.status === 200) {
             dispatch({
               type: actionTypes.INITIALIZE_CART,
               payload: cartRes.data.cart,
             });
+            console.log("Response Data CartItem:", cartRes.data.cart);
           }
         } catch (err) {
           console.log(err);
@@ -51,6 +53,7 @@ const CartContextProvider = ({ children }) => {
   const addProductToCart = async (product) => {
     setDisableCart(true);
     try {
+      console.log("Product to be sent:", product);
       const response = await postAddProductToCartService(
         {
           ...product,
@@ -58,11 +61,13 @@ const CartContextProvider = ({ children }) => {
         },
         token
       );
+
       if (response.status === 200 || response.status === 201) {
         dispatch({
           type: actionTypes.ADD_PRODUCT_TO_CART,
           payload: [{ ...product, qty: 1 }, ...state.cart],
         });
+        console.log("Product ID to be sent:", product._id);
         updateInCartOrInWish(product._id, "inCart", true);
         notify("success", "Product Added to Bag");
       }

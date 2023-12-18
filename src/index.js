@@ -10,6 +10,7 @@ import {
   CartContextProvider,
   ProductsContextProvider,
   WishlistContextProvider,
+  CheckoutProvider,
 } from "./contexts";
 
 // Call make Server
@@ -21,9 +22,11 @@ ReactDOM.render(
       <ProductsContextProvider>
         <CartContextProvider>
           <WishlistContextProvider>
-            <Router>
-              <App />
-            </Router>
+            <CheckoutProvider>
+              <Router>
+                <App />
+              </Router>
+            </CheckoutProvider>
           </WishlistContextProvider>
         </CartContextProvider>
       </ProductsContextProvider>

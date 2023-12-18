@@ -12,7 +12,7 @@ const Cart = () => {
   return (
     <div className="py-2 ">
       {cart.length > 0 && (
-        <h1 className="text-2xl font-bold p-3 ">Bag({cart.length})</h1>
+        <h1 className="text-2xl font-bold p-3 ">Giỏ hàng({cart.length})</h1>
       )}
       {cart.length ? (
         <div className="md:grid md:grid-cols-3 gap-5">
@@ -41,7 +41,7 @@ const Cart = () => {
             className="btn-rounded-secondary text-sm mt-5"
             onClick={() => navigate("/products")}
           >
-            Explore
+            Mua sắm
           </button>
         </div>
       )}

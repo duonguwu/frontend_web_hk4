@@ -79,7 +79,7 @@ const SingleProduct = ({ product }) => {
               }
             }}
           >
-            {inCart ? "Go to Bag" : "Add to Bag"}
+            {inCart ? "Đến giỏ hàng" : "Thêm vào giỏ hàng"}
           </button>
           <button
             disabled={disableWish}

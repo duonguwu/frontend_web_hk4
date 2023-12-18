@@ -4,18 +4,18 @@ const PriceDetailsCard = ({
   totalPriceOfCartProducts,
 }) => {
   const summaryData = [
-    { label: "Total Products", value: totalItems },
+    { label: "Số lượng sản phẩm", value: totalItems },
     {
-      label: "Subtotal",
+      label: "Tổng tiền",
       value: `${actualPriceOfCart}VNĐ`,
     },
     {
-      label: "Discount",
+      label: "Giảm giá",
       value: `-${actualPriceOfCart - totalPriceOfCartProducts}VNĐ`,
     },
     {
-      label: "Delivery Charges",
-      value: "Free",
+      label: "Phí vận chuyển",
+      value: "Miễn phí",
     },
   ];
 

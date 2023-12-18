@@ -6,20 +6,33 @@ import OrderSummary from "./OrderSummary";
 import { useAuthContext, useCartContext } from "../../contexts";
 import appLogo from "../../assets/thugGlasses.png";
 import { useNavigate } from "react-router";
+// import { handlePayment } from "../checkout/PaymentMethod";
 
-const Modal = ({ showModal, setShowModal }) => {
-  const { userInfo } = useAuthContext();
-  const { clearCart, totalPriceOfCartProducts } = useCartContext();
+const Modal = ({
+  showModal,
+  setShowModal,
+  handlePlaceOrder,
+  paymentMethod,
+}) => {
+  const { token } = useAuthContext();
+  // const { clearCart, totalPriceOfCartProducts } = useCartContext();
   const [disableBtn, setDisableBtn] = useState(false);
   const navigate = useNavigate();
 
-  const clickHandler = () => {
+  const [orderData, setOrderData] = useState(null);
+
+  const clickHandler = async () => {
     setDisableBtn(true);
-    setTimeout(() => {
+    try {
+      console.log("tesst:", paymentMethod);
+      // const selectedPaymentMethod = await handlePayment(paymentMethod);
       setShowModal(false);
       setDisableBtn(false);
-      displayRazorpay();
-    }, 1000);
+      handlePlaceOrder(orderData, paymentMethod, token);
+    } catch (error) {
+      console.error("Error handling payment:", error);
+      setDisableBtn(false);
+    }
   };
   const loadScript = async (url) => {
     return new Promise((resolve) => {
@@ -38,42 +51,6 @@ const Modal = ({ showModal, setShowModal }) => {
     });
   };
 
-  const displayRazorpay = async () => {
-    const res = await loadScript(
-      "https://checkout.razorpay.com/v1/checkout.js"
-    );
-
-    if (!res) {
-      console.log("Razorpay SDK failed to load, check you connection", "error");
-      return;
-    }
-
-    const options = {
-      key: "rzp_test_H2lv7MTHG3JATn",
-      amount: totalPriceOfCartProducts * 100,
-      currency: "INR",
-      name: "Eyesome",
-      description: "Be awesome with eyesome :)",
-      image: appLogo,
-      handler: function () {
-        clearCart();
-        navigate("/orders", {
-          state: "orderSuccess",
-        });
-      },
-      prefill: {
-        name: userInfo ? userInfo.username : "Test",
-        email: userInfo ? userInfo.email : "abc@gmail.com",
-        contact: "9833445762",
-      },
-      theme: {
-        color: "#f9ca24",
-      },
-    };
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
-  };
-
   return (
     <>
       {showModal ? (
@@ -82,13 +59,16 @@ const Modal = ({ showModal, setShowModal }) => {
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-xl font-semibold">Order Summary</h3>
+                  <h3 className="text-xl font-semibold">Đơn hàng</h3>
                   <button className="p-1" onClick={() => setShowModal(false)}>
                     <AiOutlineClose />
                   </button>
                 </div>
 
-                <OrderSummary />
+                <OrderSummary
+                  setOrderData={setOrderData}
+                  paymentMethod={paymentMethod}
+                />
 
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
@@ -101,7 +81,7 @@ const Modal = ({ showModal, setShowModal }) => {
                     {disableBtn ? (
                       <img src={spinningLoader} alt="" height={20} />
                     ) : (
-                      <span>Confirm Order</span>
+                      <span>Thanh toán</span>
                     )}
                   </button>
                 </div>

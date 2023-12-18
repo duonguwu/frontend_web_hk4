@@ -24,6 +24,7 @@ const CategoryCard = ({
   }, []);
 
   const clickHandler = () => {
+    console.log(categoryName);
     applyFilters("categories", [categoryName]);
     navigate("/products", { state: { from: "category" } });
   };

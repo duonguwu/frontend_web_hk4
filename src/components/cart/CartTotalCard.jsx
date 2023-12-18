@@ -11,14 +11,14 @@ const CartTotalCard = ({ cart }) => {
 
   return (
     <section className="md:col-span-1 py-7 px-7 rounded-md shadow-sm bg-white/[0.7] flex flex-col gap-6 w-full h-min">
-      <h1 className="text-xl">Price Details</h1>
+      <h1 className="text-xl">Chi tiết giỏ hàng</h1>
       {cart.map((product) => (
         <PriceCard key={product._id} product={product} />
       ))}
 
       <hr />
       <div className="flex justify-between items-center">
-        <p className=" text-gray-600">Total</p>
+        <p className=" text-gray-600">Tổng</p>
         <p className="text-2xl">{totalPriceOfCartProducts}VNĐ</p>
       </div>
 
@@ -34,7 +34,7 @@ const CartTotalCard = ({ cart }) => {
             }, 100);
           }}
         >
-          Proceed to Checkout
+          Đặt hàng
         </button>
       </div>
     </section>
