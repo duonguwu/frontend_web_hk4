@@ -1,27 +1,27 @@
 import { Cart, Wishlist, Checkout, Profile, Orders } from "../pages";
-import Invoice from "../pages/Invoice";
-import Customer from "../pages/Customer";
-import Dashboard from "../pages/Dashboard";
-import Product from "../pages/Product";
+import Invoice from "../pages/admin/invoice/Invoice";
+import Customer from "../pages/admin/customer/Customer";
+import Dashboard from "../pages/admin/dashboard/Dashboard";
+import Product from "../pages/admin/product/Product";
 
 const adminRoutes = [
   {
-    path: "/admin_invoice",
+    path: "/admininvoice",
     element: <Invoice />,
   },
   {
-    path: "/admin_customer",
-    element: <Customer />
+    path: "/admincustomer",
+    element: <Customer />,
   },
   {
-    path: "/admin_product",
-    element: <Product />
+    path: "/adminproduct/*",
+    element: <Product />,
   },
   {
-    path: "/admin_dashboard",
-    element: <Dashboard />
-  }
-]
+    path: "/admindashboard",
+    element: <Dashboard />,
+  },
+];
 
 const privateRoutes = [
   {
@@ -43,6 +43,6 @@ const privateRoutes = [
   {
     path: "/profile",
     element: <Profile />,
-  }
+  },
 ];
 export { privateRoutes, adminRoutes };

@@ -33,11 +33,14 @@ const Index = () => {
         </Route>
       </Route>
 
-      <Route element={token ? <Navigate to={location?.state?.from?.pathname ?? "/admin_product"} replace={true} /> : <Outlet />}>
+      {/* <Route
+        element={
+          token ? <Navigate to={location?.state?.from?.pathname ?? "/adminproduct/*"} replace={true} /> : <Outlet />
+        }>
         {authRoutes.map((route, idx) => (
           <Route key={idx} path={route.path} element={route.element} exact />
         ))}
-      </Route>
+      </Route> */}
       <Route element={<AdminLayout />}>
         {adminRoutes.map((route, idx) => (
           <Route key={idx} path={route.path} element={route.element} />

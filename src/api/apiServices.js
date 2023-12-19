@@ -1,24 +1,27 @@
 import axios from "axios";
-import {
-  CART_URL,
-  PRODUCTS_URL,
-  LOGIN_URL,
-  SIGNUP_URL,
-  WISHLIST_URL,
-  CATEGORIES_URL,
-} from "./apiUrls";
+import { CART_URL, PRODUCTS_URL, LOGIN_URL, SIGNUP_URL, WISHLIST_URL, CATEGORIES_URL } from "./apiUrls";
 
-export const loginService = (email, password) =>
-  axios.post(LOGIN_URL, { email, password });
+export const loginService = (email, password) => axios.post(LOGIN_URL, { email, password });
 
-export const signupService = (username, email, password) =>
-  axios.post(SIGNUP_URL, { username, email, password });
+export const signupService = (username, email, password) => axios.post(SIGNUP_URL, { username, email, password });
 
 export const getAllProductsService = () => axios.get(PRODUCTS_URL);
 
 export const getProductByIdService = (productId) =>
   //axios.get(`http://localhost:8000/api/products/${productId}`);
   axios.get(`${PRODUCTS_URL}/${productId}`);
+
+export const postProductService = (product, token) =>
+  axios.post(
+    PRODUCTS_URL,
+    { product },
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+
 export const getCartItemsService = (token) =>
   axios.get(CART_URL, {
     headers: {

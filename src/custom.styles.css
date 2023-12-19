@@ -13,12 +13,17 @@
 .btn-rounded-secondary {
   @apply border border-[--primary-text-color]  py-1.5   rounded-full px-6 hover:bg-[--primary-text-color] hover:text-white transition;
 }
+
+.link {
+  @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium;
+}
+
+.active {
+  @apply bg-blue-100 text-blue-600;
+}
+
 .custom-bg-gradient {
-  background: linear-gradient(
-    180deg,
-    rgb(45, 138, 226) 0%,
-    rgb(14, 25, 148) 100%
-  );
+  background: linear-gradient(180deg, rgb(45, 138, 226) 0%, rgb(14, 25, 148) 100%);
 }
 .card {
   @apply flex flex-col justify-between bg-white/[0.5] rounded-lg shadow-md border-2 border-black/[0.05] overflow-hidden;
