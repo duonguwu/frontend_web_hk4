@@ -1,7 +1,6 @@
 import { useState } from "react";
-
 import { useAuthContext, useProductsContext } from "../contexts";
-
+// import { useHistory } from "react-router-dom";
 import {
   AddressCard,
   AddressForm,
@@ -32,6 +31,10 @@ const Profile = () => {
       logoutHandler();
       setLoggingOut(false);
     }, 1000);
+  };
+
+  const handleGoBack = () => {
+    setSelectedInvoiceId(null);
   };
 
   return (
@@ -72,7 +75,10 @@ const Profile = () => {
         <div className="flex-1 ml-4">
           {selectedItem === "invoice" ? (
             selectedInvoiceId ? (
-              <InvoiceDetails invoiceId={selectedInvoiceId} />
+              <InvoiceDetails
+                invoiceId={selectedInvoiceId}
+                onGoBack={handleGoBack}
+              />
             ) : (
               <InvoiceList onSelectInvoice={handleSelectInvoice} />
             )

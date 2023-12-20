@@ -32,15 +32,19 @@ const Checkout = () => {
   const handlePlaceOrder = async (data, paymentMethod, token) => {
     try {
       console.log("data", data);
-      console.log("token", token); // trả về null, mai check chỗ này
+      console.log("token", token);
       const orderResponse = await placeOrderService(data, paymentMethod, token);
-
       console.log("Order placed successfully!", orderResponse);
-
-      // Thực hiện các hành động sau khi đặt hàng thành công
-      clearCart();
-      notify("info", "Đơn hàng của bạn đã được đặt thành công!");
-      navigate("/orders", { state: "orderSuccess" });
+      if (paymentMethod === "vnpay" && orderResponse.data.vnpay_url) {
+        // Chuyển hướng người dùng đến trang thanh toán VNPAY
+        window.location.href = orderResponse.data.payUrl;
+      } else if (paymentMethod === "payUrl" && orderResponse.data.payUrl) {
+        window.location.href = orderResponse.data.payUrl;
+      } else {
+        // clearCart();
+        // notify("info", "Đơn hàng của bạn đã được đặt thành công!");
+        // navigate("/orders", { state: "orderSuccess" });
+      }
     } catch (err) {
       console.error("Error placing order:", err.message);
       notify(

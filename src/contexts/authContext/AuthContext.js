@@ -30,7 +30,7 @@ const AuthContextProvider = ({ children }) => {
           JSON.stringify(response?.data?.createdUser)
         );
         setToken(response?.data?.encodedToken);
-        notify("success", "Signed Up Successfully!!");
+        notify("success", "Đăng ký thành công!!");
       }
     } catch (err) {
       console.log(err);
@@ -57,7 +57,9 @@ const AuthContextProvider = ({ children }) => {
           JSON.stringify(response?.data?.foundUser)
         );
         setToken(response?.data?.encodedToken);
-        notify("success", "Logged In Successfully!!");
+        notify("success", "Đăng nhập thành công!!");
+      } else if (response.status === 401) {
+        notify("error", "Có lỗi khi đăng nhập!!");
       }
     } catch (err) {
       console.log(err);

@@ -7,6 +7,8 @@ import {
   WISHLIST_URL,
   CATEGORIES_URL,
   CHECKOUT_URL,
+  ALL_USER,
+  ALL_INVOICE,
 } from "./apiUrls";
 
 export const loginService = (email, password) =>
@@ -14,6 +16,13 @@ export const loginService = (email, password) =>
 
 export const signupService = (username, email, password) =>
   axios.post(SIGNUP_URL, { username, email, password });
+
+export const getAllUsersService = () => axios.get(ALL_USER);
+
+export const getAllInvoicesService = () => axios.get(ALL_INVOICE);
+
+export const getAllInvoicesDetailsService = (invoiceID) =>
+  axios.get(`${ALL_INVOICE}/${invoiceID}`);
 
 export const getAllProductsService = () => axios.get(PRODUCTS_URL);
 
@@ -157,3 +166,31 @@ export const placeOrderService = (orderData, paymentMethod, token) => {
     headers
   );
 };
+
+export const newAddresses = (data, token) => {
+  axios.post(`http://localhost:8000/api/user/address`, data, {
+    headers: {
+      authorization: token,
+    },
+  });
+};
+
+export const getAllAddressesService = async (token) => {
+  try {
+    const response = await axios.get(
+      "http://localhost:8000/api/user/address/get",
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    console.error("Error fetching addresses:", error);
+    throw error;
+  }
+};
+
+export const postAddProduct = (product) =>
+  axios.post(`http://localhost:8000/api/admin/addproduct`, { product });

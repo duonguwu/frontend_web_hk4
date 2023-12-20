@@ -1,39 +1,27 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useAuthContext } from "../../contexts";
 import { format } from "date-fns";
+import { getAllInvoicesDetailsService } from "../../../api/apiServices";
 
 const InvoiceDetail = ({ invoiceId, onGoBack }) => {
   const [invoice, setInvoice] = useState(null);
-  const { token } = useAuthContext();
 
   useEffect(() => {
-    if (token) {
-      // Gọi API để lấy chi tiết hóa đơn dựa trên invoiceId
-      const fetchInvoiceDetail = async () => {
-        try {
-          const response = await axios.get(
-            `http://localhost:8000/api/user/getInvoices/${invoiceId}`,
-            {
-              headers: {
-                authorization: token,
-              },
-            }
-          );
-          setInvoice(response.data);
-        } catch (error) {
-          console.error("Error fetching invoice detail:", error);
-        }
-      };
+    const fetchInvoiceDetail = async () => {
+      try {
+        const response = await getAllInvoicesDetailsService(invoiceId);
+        setInvoice(response.data);
+      } catch (error) {
+        console.error("Error fetching invoices:", error);
+      }
+    };
 
-      fetchInvoiceDetail();
-    }
-  }, [token, invoiceId]);
+    fetchInvoiceDetail();
+  }, [invoiceId]);
   const getPaymentMethodDisplayName = (method) => {
     switch (method) {
       case "vnpay":
         return "VNPAY";
-      case "payUrl":
+      case "momo":
         return "MoMo";
       case "metamask":
         return "Metamask";

@@ -3,6 +3,7 @@ import { initialState, productsReducer } from "../../reducers/productsReducer";
 import {
   getAllCategoriesService,
   getAllProductsService,
+  getAllAddressesService,
 } from "../../api/apiServices";
 import {
   actionTypes,
@@ -49,7 +50,7 @@ const ProductsContextProvider = ({ children }) => {
             payload: { filterType: "priceRange", filterValue: maxValue },
           });
         }
-
+        await getAddressesService();
         const categoryRes = await getAllCategoriesService();
         console.log("categoryRes:", categoryRes); // Kiểm tra dữ liệu trả về từ API
 
@@ -108,12 +109,33 @@ const ProductsContextProvider = ({ children }) => {
     (product) => product.trending
   );
 
+  ///// Add ress
+  const getAddressesService = async () => {
+    try {
+      const addressesRes = await getAllAddressesService(token);
+      console.log("addressesRes:", addressesRes); // Kiểm tra dữ liệu trả về từ API
+
+      if (addressesRes.status === 200) {
+        const addressesData = addressesRes.data.addresses || []; // Kiểm tra dữ liệu
+        console.log("addressesData:", addressesData); // Kiểm tra dữ liệu sau khi xử lý
+
+        dispatch({
+          type: addressTypes.INITIALIZE_ADDRESSES,
+          payload: addressesData,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching addresses:", error);
+    }
+  };
+
   const addAddress = (newAddress) => {
     dispatch({
       type: addressTypes.ADD_ADDRESS,
       payload: [newAddress, ...state.addressList],
     });
   };
+
   const updateAddress = (addressId, updatedAddress) => {
     dispatch({
       type: addressTypes.ADD_ADDRESS,
@@ -158,6 +180,7 @@ const ProductsContextProvider = ({ children }) => {
         getProductById,
         applyFilters,
         clearFilters,
+        getAddressesService,
         addAddress,
         updateAddress,
         deleteAddress,

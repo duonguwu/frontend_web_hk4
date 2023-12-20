@@ -7,6 +7,12 @@ const InputRange = () => {
     applyFilters,
     filters: { priceRange },
   } = useProductsContext();
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(amount);
+  };
   return (
     <label>
       <input
@@ -21,8 +27,8 @@ const InputRange = () => {
       />
       <div className="w-full flex justify-between p-0">
         <span>0</span>
-        <span>{Math.floor(maxRange / 2)}</span>
-        <span>{maxRange}</span>
+        <span>{formatCurrency(Math.floor(maxRange / 2))}</span>
+        <span>{formatCurrency(maxRange)}</span>
       </div>
     </label>
   );

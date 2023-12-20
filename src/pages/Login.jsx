@@ -60,7 +60,7 @@ const Login = () => {
         <section className="px-7 py-10 rounded-md shadow-md bg-white/[0.7] flex flex-col gap-6 w-full max-w-lg">
           <Logo />
           <div className="flex flex-col gap-2">
-            <h1 className="text-3xl font-bold mb-3 ">Login to your account</h1>
+            <h1 className="text-3xl font-bold mb-3 ">Đăng nhập</h1>
 
             <form
               action=""
@@ -82,7 +82,7 @@ const Login = () => {
                 />
               </label>
               <label className="flex flex-col">
-                Password
+                Mật khẩu
                 <input
                   type="password"
                   className="border rounded-md p-1.5 shadow-sm"
@@ -104,7 +104,7 @@ const Login = () => {
                     !loginCredentials.password
                   }
                 >
-                  {loggingIn ? "Logging In..." : "Login"}
+                  {loggingIn ? "Đang đăng nhập..." : "Đăng nhập"}
                 </button>
                 <button
                   className="btn-secondary w-2/3 text-sm md:text-base text-center"
@@ -116,10 +116,10 @@ const Login = () => {
                     });
                   }}
                 >
-                  Login as a Guest
+                  Đăng nhập với khách
                 </button>
                 <Link to="/signup" className="underline text-gray-600">
-                  Create New Account
+                  Đăng ký tài khoản
                 </Link>
               </div>
             </form>

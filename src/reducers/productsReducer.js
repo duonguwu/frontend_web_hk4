@@ -87,7 +87,8 @@ export const productsReducer = (state, action) => {
 
     case actionTypes.INITIALIZE_CATEGORIES:
       return { ...state, categoryList: action.payload };
-
+    case actionTypes.INITIALIZE_ADDRESSES:
+      return { ...state, addressList: action.payload };
     case addressTypes.ADD_ADDRESS:
       return { ...state, addressList: action.payload };
     case addressTypes.UPDATE_ADDRESS:

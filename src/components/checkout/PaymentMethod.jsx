@@ -46,7 +46,7 @@ const PaymentMethodSelect = ({
       image: <img src={vnpay_logo} alt="VNPay" />,
     },
     {
-      value: "momo",
+      value: "payUrl",
       label: "Momo",
       image: <img src={momo_logo} alt="Momo" />,
     },

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
 import { useProductsContext } from "../../contexts";
 import AddressCard from "./AddressCard";
@@ -7,7 +7,28 @@ import AddressForm from "./AddressForm";
 const Address = ({ isEdit }) => {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [editAddress, setEditAddress] = useState(null);
-  const { addressList } = useProductsContext();
+  const { addressList, getAddressesService } = useProductsContext();
+
+  // useEffect(() => {
+  //   // Gọi getAddressesService để lấy dữ liệu địa chỉ khi component mount
+  //   const fetchData = async () => {
+  //     try {
+  //       const addresses = await getAddressesService();
+  //       // Cập nhật địa chỉ trong context
+  //       // Note: Đảm bảo rằng địa chỉ đã được set trong context, nếu không useEffect sẽ chạy vô tận
+  //       // Nếu data trả về từ API không khớp với định dạng hoặc không có dữ liệu, hãy xử lý nó ở đây
+  //     } catch (error) {
+  //       // Xử lý lỗi khi gọi API
+  //       console.error("Error fetching addresses:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [getAddressesService]);
+  useEffect(() => {
+    getAddressesService();
+    console.error("Error fetching addresses:", getAddressesService()); // Gọi hàm để lấy danh sách địa chỉ khi component được tạo
+  }, []);
   return (
     <>
       {!isEdit && <h1 className="text-2xl font-bold">Địa chỉ</h1>}

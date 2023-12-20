@@ -3,10 +3,11 @@ import { Routes, Route, Outlet, Navigate, useLocation } from "react-router-dom";
 import SharedLayout from "./SharedLayout";
 import RequiresAuth from "./RequiresAuth";
 import { authRoutes, contentRoutes } from "./publicRoutes";
-import { privateRoutes } from "./privateRoutes";
-
+import { privateRoutes, adminRoutes } from "./privateRoutes";
+import { PaymentResult } from "../components";
 import { ErrorPage, Home, Login } from "../pages";
 import { useAuthContext } from "../contexts";
+import AdminLayout from "./AdminLayout";
 
 const Index = () => {
   const { token } = useAuthContext();
@@ -43,6 +44,12 @@ const Index = () => {
           ))}
         </Route>
       </Route>
+      <Route element={<AdminLayout />}>
+        {adminRoutes.map((route, idx) => (
+          <Route key={idx} path={route.path} element={route.element} />
+        ))}
+      </Route>
+      <Route path="/payment-result" component={PaymentResult} />
     </Routes>
   );
 };
