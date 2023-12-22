@@ -29,7 +29,7 @@
 | 5   | 21520264 | Nguyễn Phước Huy     | https://github.com/nph17103       | 21520264@gm.uit.edu.vn |
 | 6   | 21522072 | Lê Thuận Hiếu        | https://github.com/lethuanhieu    | 21522072@gm.uit.edu.vn |
 
-To run the Eyesome ecommerce web application locally, please follow these steps:
+To run the Matviet ecommerce web application locally, please follow these steps:
 
 1. git clone https://github.com/duonguwu/frontend_web_hk4.git
 2. cd frontend_web_hk4
