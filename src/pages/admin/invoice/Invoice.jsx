@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getAllInvoicesService } from "../../../api/apiServices";
 import { format } from "date-fns";
 import InvoiceDetail from "./InvoiceDetails"; // Import InvoiceDetail component
-
+import useAdminRedirect from "../useAdminRedirect";
 const Invoice = () => {
   const [invoices, setInvoices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [invoicesPerPage] = useState(5);
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
-
+  useAdminRedirect();
   useEffect(() => {
     const fetchInvoices = async () => {
       try {

@@ -69,7 +69,7 @@ const CartContextProvider = ({ children }) => {
         });
         console.log("Product ID to be sent:", product._id);
         updateInCartOrInWish(product._id, "inCart", true);
-        notify("success", "Product Added to Bag");
+        notify("success", "Đã thêm sản phẩm vào giỏ hàng");
       }
 
       console.log({ response });
@@ -140,7 +140,7 @@ const CartContextProvider = ({ children }) => {
           payload: response.data.cart,
         });
         updateInCartOrInWish(productId, "inCart", false);
-        notify("info", "Product Removed from Bag");
+        notify("info", "Đã xóa sản phẩm ra khỏi giỏ hàng");
       }
     } catch (err) {
       console.log(err);

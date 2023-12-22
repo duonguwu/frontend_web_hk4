@@ -9,13 +9,15 @@ import { AiOutlineAppstore } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { RiBuilding3Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
+import { useAuthContext } from "../../contexts";
 
 const Sidebar = () => {
   let isTabletMid = useMediaQuery({ query: "(max-width: 768px)" });
   const [open, setOpen] = useState(isTabletMid ? false : true);
   const sidebarRef = useRef();
   const { pathname } = useLocation();
-
+  const [loggingOut, setLoggingOut] = useState(false);
+  const { logoutHandler } = useAuthContext();
   useEffect(() => {
     if (isTabletMid) {
       setOpen(false);
@@ -23,7 +25,13 @@ const Sidebar = () => {
       setOpen(true);
     }
   }, [isTabletMid]);
-
+  const handleLogOut = () => {
+    setLoggingOut(true);
+    setTimeout(() => {
+      logoutHandler();
+      setLoggingOut(false);
+    }, 1000);
+  };
   useEffect(() => {
     isTabletMid && setOpen(false);
   }, [isTabletMid, pathname]);
@@ -120,8 +128,12 @@ const Sidebar = () => {
                 <div>
                   <p>Admin name</p>
                 </div>
-                <button className="text-teal-500 py-1.5 px-3 text-xs bg-teal-50 rounded-xl">
-                  Log out
+                <button
+                  disabled={loggingOut}
+                  onClick={handleLogOut}
+                  className="text-teal-500 py-1.5 px-3 text-xs bg-teal-50 rounded-xl"
+                >
+                  {loggingOut ? "Logging Out..." : "Logout"}
                 </button>
               </div>
             </div>

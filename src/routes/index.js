@@ -44,10 +44,12 @@ const Index = () => {
           ))}
         </Route>
       </Route>
-      <Route element={<AdminLayout />}>
-        {adminRoutes.map((route, idx) => (
-          <Route key={idx} path={route.path} element={route.element} />
-        ))}
+      <Route element={<RequiresAuth />}>
+        <Route element={<AdminLayout />}>
+          {adminRoutes.map((route, idx) => (
+            <Route key={idx} path={route.path} element={route.element} />
+          ))}
+        </Route>
       </Route>
       <Route path="/payment-result" component={PaymentResult} />
     </Routes>

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 
 const ProductForm = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const ProductForm = () => {
     gender: "",
     weight: "",
     quantity: "",
-    image: null,
+    image: "",
     rating: "1",
     price: "",
     newPrice: "",
@@ -36,20 +37,43 @@ const ProductForm = () => {
   const [msg, setMsg] = useState(null);
   const [progress, setProgress] = useState({ started: false, pc: 0 });
   // const [message, setMessage] = useState("");
-  const handleInputChange = (e) => {
+  const handleInputChange = async (e) => {
     const { name, value, type, files } = e.target;
 
     // Xử lý input file
-    const fileValue = type === "file" ? files[0] : value;
+    let fileValue = type === "file" ? files[0] : value;
+    if (type === "file") {
+      fileValue = await uploadImage(fileValue);
+    }
     setProduct((prevProduct) => ({
       ...prevProduct,
-      [name]: type === "file" ? fileValue : value,
+      [name]: fileValue,
     }));
     // Xóa thông báo lỗi khi người dùng bắt đầu nhập liệu
     setErrors({
       ...errors,
       [name]: "",
     });
+  };
+
+  const uploadImage = async (files) => {
+    const CLOUD_NAME = "dtldsdxbm";
+    const PRESET_NAME = "demo_upload";
+    const FOLDER_NAME = "matviet";
+    let urls;
+    const api = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+
+    const formData = new FormData();
+    formData.append("upload_preset", PRESET_NAME);
+    formData.append("folder", FOLDER_NAME);
+    formData.append("file", files);
+    const response = await axios.post(api, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    urls = response.data.secure_url;
+    return urls;
   };
 
   const hanldePriceChange = (e) => {
@@ -74,20 +98,23 @@ const ProductForm = () => {
     });
 
     if (Object.keys(newErrors).length > 0 || product.price < 0) {
-      // Nếu có lỗi, hiển thị thông báo lỗi và không thực hiện submit
       setErrors(newErrors);
       setErrorPrice("Giá không thể nhỏ hơn 0");
     } else {
-      // Nếu không có lỗi, thực hiện các xử lý khác ở đây
-      console.log(product);
-
       setMsg("Uploading...");
       setProgress((prevState) => {
         return { ...prevState, started: true };
       });
 
+      const formData = new FormData();
+      const id = uuidv4();
+      formData.append("id", id);
+      Object.keys(product).forEach((key) => {
+        formData.append(key, product[key]);
+      });
+
       axios
-        .post("http://localhost:8000/api/admin/addproduct", product, {
+        .post("http://localhost:8000/api/admin/addproduct", formData, {
           onUploadProgress: (progressEvent) => {
             setProgress((prevState) => {
               return { ...prevState, pc: progressEvent.progress * 100 };
@@ -95,16 +122,11 @@ const ProductForm = () => {
           },
         })
         .then((response) => {
-          // Xử lý kết quả thành công
           setMsg("Upload successful");
           console.log("Response:", response);
           toast.success("Đã thêm sản phẩm");
-          // setTimeout(() => {
-          //   navigate("/adminproduct");
-          // }, 2000);
         })
         .catch((error) => {
-          // Xử lý lỗi
           setMsg("Upload fail");
           console.error("Error:", error);
           toast.error("Không thể thêm sản phẩm");
@@ -115,8 +137,8 @@ const ProductForm = () => {
   return (
     <div className="bg-white rounded-md">
       <h2 className="text-2xl font-bold mb-4">Thêm sản phẩm</h2>
-      <div className="flex gap-4">
-        <form encType="multipart/form-data">
+      <form encType="multipart/form-data">
+        <div className="flex gap-4">
           <div>
             <div className="flex flex-col w-56">
               <div className="text-sm font-medium text-gray-700 p-2">
@@ -222,6 +244,7 @@ const ProductForm = () => {
               <input
                 type="file"
                 name="image"
+                id="product-image"
                 className="p-2 border rounded-md"
                 onChange={handleInputChange}
               />
@@ -305,8 +328,9 @@ const ProductForm = () => {
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
+
       <div className="flex justify-end gap-2">
         {/* <p className="text-warning">{message}</p> */}
         <button

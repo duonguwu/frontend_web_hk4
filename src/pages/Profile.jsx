@@ -8,8 +8,10 @@ import {
   InvoiceList,
 } from "../components";
 import Address from "../components/address/Address";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const userDetails = localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
     : null;
@@ -18,7 +20,7 @@ const Profile = () => {
   const [addNewAddress, setAddNewAddress] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
-  const { logoutHandler } = useAuthContext();
+  const { logoutHandler, userInfo, token } = useAuthContext();
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
 
   const handleSelectInvoice = (invoiceId) => {
@@ -100,6 +102,14 @@ const Profile = () => {
               >
                 {loggingOut ? "Logging Out..." : "Logout"}
               </button>
+              {userDetails?.is_admin === 1 && (
+                <button
+                  className="w-1/2 text-sm bg-blue-600 py-2 px-4 text-white rounded-md hover:bg-blue-700 mt-4"
+                  onClick={() => navigate("/adminproduct")}
+                >
+                  Go to Admin
+                </button>
+              )}
             </div>
           ) : (
             <section className=" rounded-md shadow-sm bg-white/[0.7] flex flex-col gap-6 w-full h-min">

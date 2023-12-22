@@ -29,7 +29,6 @@ const ProductTable = () => {
     (async () => {
       const getProduct = await getAllProductsService();
       setProducts(getProduct.data.products);
-      console.log("productsRes admin:", getProduct);
       //console.log("Products in state:", products);
     })();
   }, [token]);

@@ -83,7 +83,7 @@ const SingleProduct = ({ product }) => {
             onClick={() => {
               if (!token) {
                 navigate("/login", { state: { from: location.pathname } });
-                notify("warn", "Please Login to continue");
+                notify("warn", "Đăng nhập để tiếp tục");
               } else {
                 if (!inCart) {
                   addProductToCart(product);
@@ -101,7 +101,7 @@ const SingleProduct = ({ product }) => {
             onClick={() => {
               if (!token) {
                 navigate("/login", { state: { from: location.pathname } });
-                notify("warn", "Please Login to continue");
+                notify("warn", "Đăng nhập để tiếp tục");
               } else {
                 if (product?.inWish) {
                   deleteProductFromWishlist(product._id);

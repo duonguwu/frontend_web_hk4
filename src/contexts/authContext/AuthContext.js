@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import { loginService, signupService } from "../../api/apiServices";
 import { notify } from "../../utils/utils";
-
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
@@ -38,7 +37,7 @@ const AuthContextProvider = ({ children }) => {
         "error",
         err?.response?.data?.errors
           ? err?.response?.data?.errors[0]
-          : "Some Error Occurred!!"
+          : "Có lỗi xảy ra!"
       );
     } finally {
       setSigningUp(false);
@@ -56,6 +55,11 @@ const AuthContextProvider = ({ children }) => {
           "userInfo",
           JSON.stringify(response?.data?.foundUser)
         );
+        // if (response?.data?.foundUser?.is_admin === 1) {
+        //   navigate("/adminproduct");
+        //   return;
+        // }
+        // navigate("/");
         setToken(response?.data?.encodedToken);
         notify("success", "Đăng nhập thành công!!");
       } else if (response.status === 401) {
@@ -78,7 +82,7 @@ const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("userInfo");
     setToken(null);
-    notify("info", "Logged out successfully!!", 100);
+    notify("info", "Đăng xuất thành công!!", 100);
   };
   return (
     <AuthContext.Provider

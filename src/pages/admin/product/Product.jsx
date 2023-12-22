@@ -4,8 +4,9 @@ import ProductTable from "./ProductTable";
 import ProductForm from "./ProductForm";
 // import ProductTable from "./ProductTable";
 // import ProductForm from "./ProductForm";
-
+import useAdminRedirect from "../useAdminRedirect";
 const Product = () => {
+  useAdminRedirect();
   // const [showForm, setShowForm] = useState(false);
   return (
     <>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getAllUsersService } from "../../../api/apiServices";
 import { format } from "date-fns";
+import useAdminRedirect from "../useAdminRedirect";
 
 const Customer = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(5);
-
+  useAdminRedirect();
   useEffect(() => {
     const fetchUsers = async () => {
       try {

@@ -57,7 +57,7 @@ const WishlistContextProvider = ({ children }) => {
         });
         updateInCartOrInWish(product._id, "inWish", true);
       }
-      notify("success", "Added to wishlist");
+      notify("success", "Đã thêm sản phẩm vào Yêu thích");
     } catch (err) {
       console.log(err);
       notify(
@@ -82,7 +82,7 @@ const WishlistContextProvider = ({ children }) => {
           payload: state.wishlist.filter(({ _id }) => _id !== productId),
         });
         updateInCartOrInWish(productId, "inWish", false);
-        notify("warn", "Removed from wishlist");
+        notify("warn", "Đã xóa sản phẩm ra khỏi giỏ hàng");
       }
     } catch (err) {
       console.log(err);

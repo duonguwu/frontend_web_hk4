@@ -56,7 +56,7 @@ const Signup = () => {
         userDetails
       );
       localStorage.setItem("token", response?.data?.access_token);
-      notify("success", "Signed Up Successfully!!");
+      notify("success", "Đăng ký thành công!!");
       navigate("/login");
       // Xử lý kết quả trả về từ backend
       // Đăng nhập người dùng sau khi đăng ký thành công

@@ -37,13 +37,13 @@ const Checkout = () => {
       console.log("Order placed successfully!", orderResponse);
       if (paymentMethod === "vnpay" && orderResponse.data.vnpay_url) {
         // Chuyển hướng người dùng đến trang thanh toán VNPAY
-        window.location.href = orderResponse.data.payUrl;
+        window.location.href = orderResponse.data.vnpay_url;
       } else if (paymentMethod === "payUrl" && orderResponse.data.payUrl) {
         window.location.href = orderResponse.data.payUrl;
       } else {
-        // clearCart();
-        // notify("info", "Đơn hàng của bạn đã được đặt thành công!");
-        // navigate("/orders", { state: "orderSuccess" });
+        clearCart();
+        notify("info", "Đơn hàng của bạn đã được đặt thành công!");
+        navigate("/orders", { state: "orderSuccess" });
       }
     } catch (err) {
       console.error("Error placing order:", err.message);

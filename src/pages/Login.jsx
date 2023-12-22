@@ -7,14 +7,13 @@ import { useAuthContext } from "../contexts";
 import api from "../utils/axios-config"; // Import tệp axios-config.js đã cấu hình
 
 const Login = () => {
-  const { loginHandler, token, loggingIn } = useAuthContext();
+  const { loginHandler, token, loggingIn, userInfo } = useAuthContext();
   const navigate = useNavigate();
   const location = useLocation();
   const [loginCredentials, setLoginCredentials] = useState({
     email: "",
     password: "",
   });
-
   useEffect(() => {
     let id;
     if (token) {
@@ -42,8 +41,15 @@ const Login = () => {
       if (response.status === 200) {
         // Lưu trữ token trong localStorage sau khi đăng nhập thành công
         localStorage.setItem("token", response.data.access_token);
-        // Lưu trữ token nếu cần
-        localStorage.setItem("token", response?.data?.access_token);
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify(response?.data?.foundUser)
+        );
+        // Kiểm tra nếu là admin thì chuyển hướng tới trang admin
+        if (response?.data?.foundUser?.is_admin === 1) {
+          navigate("/adminproduct");
+          return;
+        }
         navigate("/");
       }
     } catch (error) {
