@@ -11,7 +11,7 @@ const Orders = () => {
     } else {
       setTimeout(() => {
         navigate("/products");
-      }, 9000);
+      }, 3000);
     }
   }, []);
   return (

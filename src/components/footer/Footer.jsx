@@ -1,9 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import address from "../../assets/ico-address.png";
 import mail from "../../assets/ico-mail.png";
 import phone from "../../assets/ico-phone.png";
 
 const Footer = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phoneNumber: "",
+    email: "",
+  });
+  const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        "https://open-sg.larksuite.com/anycross/trigger/callback/MDE4NjNkZWM1ZTBjYjE1MWI4MzQ1ZDU3ZjVkMzlmYWE3",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain",
+          },
+          body: `${formData.name} + ${formData.phoneNumber}`,
+        }
+      );
+      setFormData({
+        phoneNumber: "",
+        name: "",
+      });
+    } catch (error) {
+      console.error("An error occurred during form submission:", error);
+      setIsSubmitSuccess(false);
+    } finally {
+      setIsButtonClicked(true);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   return (
     <div className="flex flex-col bg-blue-50 justify-center items-center absolute right-0 left-0 px-4">
       <h2 className="text-2x1 md:text-2xl mt-4 text-blue-900">
@@ -23,13 +63,39 @@ const Footer = () => {
         </li>
         <li className="flex-1">
           <b>HỖ TRỢ KHÁCH HÀNG</b>
+          <form onSubmit={handleSubmit} className="flex flex-col">
+            <input
+              type="text"
+              name="name"
+              placeholder="Tên"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="my-2 p-2"
+            />
+            <input
+              type="text"
+              name="phoneNumber"
+              placeholder="Số điện thoại"
+              value={formData.phoneNumber}
+              onChange={handleInputChange}
+              className="my-2 p-2"
+            />
+            <button type="submit" className="bg-blue-500 text-white p-2">
+              Gửi
+            </button>
+            {isButtonClicked && isSubmitSuccess && (
+              <p className="text-green-600 mt-2">
+                Thông tin đã được gửi thành công!
+              </p>
+            )}
+          </form>
         </li>
         <li className="flex-1">
           <b>THÔNG TIN LIÊN LẠC</b>
           <ul>
             <li className="flex">
               <img src={phone} alt="" className="w-5 h-5 mr-1" />
-              <a href="" className="text-blue-800">
+              <a href="tel:0327879401" className="text-blue-800">
                 {" "}
                 0327879401
               </a>
@@ -46,7 +112,7 @@ const Footer = () => {
             </li>
             <li className="flex">
               <img src={mail} alt="" className="w-5 h-5 mr-1" />
-              <a className="text-blue-800" href="">
+              <a className="text-blue-800" href="mailto:matkinhviet@gmail.com">
                 matkinhviet@gmail.com
               </a>
             </li>
