@@ -21,7 +21,7 @@ const Footer = () => {
         headers: {
           "Content-Type": "text/plain",
         },
-        body: `${formData.phoneNumber}`,
+        body: `${formData.name} + ${formData.phoneNumber}`,
       });
 
       if (response.ok) {
@@ -30,6 +30,7 @@ const Footer = () => {
 
         setFormData({
           phoneNumber: "",
+          name: "",
         });
       } else {
 
@@ -69,6 +70,14 @@ const Footer = () => {
         <li className="flex-1">
           <b>HỖ TRỢ KHÁCH HÀNG</b>
           <form onSubmit={handleSubmit} className="flex flex-col">
+            <input
+              type="text"
+              name="name"
+              placeholder="Tên"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="my-2 p-2"
+            />
             <input
               type="text"
               name="phoneNumber"
@@ -119,4 +128,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
