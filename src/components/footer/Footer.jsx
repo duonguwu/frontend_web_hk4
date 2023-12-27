@@ -112,8 +112,8 @@ const Footer = () => {
             </li>
             <li className="flex">
               <img src={mail} alt="" className="w-5 h-5 mr-1" />
-              <a className="text-blue-800" href="mailto:matkinhviet@gmail.com">
-                matkinhviet@gmail.com
+              <a className="text-blue-800" href="mailto:matviet.official.207@gmail.com">
+               matviet.official.207@gmail.com
               </a>
             </li>
           </ul>
