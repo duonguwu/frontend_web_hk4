@@ -35,3 +35,5 @@ To run the Matviet ecommerce web application locally, please follow these steps:
 2. cd frontend_web_hk4
 3. npm install
 4. npm start
+
+Link demo: https://www.youtube.com/watch?v=2xAH6ci-jEk
